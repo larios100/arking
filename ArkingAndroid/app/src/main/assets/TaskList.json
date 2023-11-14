@@ -1,0 +1,1159 @@
+{
+  "headers": [
+    {
+      "id": 1,
+      "name": "CIMENTACION",
+      "tests": [{
+        "id": 1,
+        "name": "PRUEBAS DE PRESION HIDRAULICA y GAS",
+        "items": [
+          {
+            "id": 1,
+            "name": "INST. HIDRAULICA",
+            "description": "Prueba de presion en tuberia hidraulica cargada con Agua a 7.5 Kg/cm2 12Horas"
+          },
+          {
+            "id": 2,
+            "name": "INST. GAS",
+            "description": "Prueba de presion en tuberia de gas cargada con Aire a 4.5 Kg/cm2 12Horas"
+          }
+        ]
+      }],
+      "categories": [
+        {
+          "id": 1,
+          "name": "TRAZO DE DESPLANTES DE MUROS E INSTALACIONES",
+          "tasks": [
+            {
+              "id": 1,
+              "name": "Escuadre y distancias de ejes",
+              "isCompleted": false
+            },
+            {
+              "id": 2,
+              "name": "Ubicación de castillos, orientacion y medidas de castillos",
+              "isCompleted": false
+            },
+            {
+              "id": 3,
+              "name": "Ubicación de salidas hidrosanitarias: Centros, dentro o fuera de muros según corresponda",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "ARMADOS DE LOSA DE CIMENTACION Y CASTILLOS",
+          "tasks": [
+            {
+              "id": 4,
+              "name": "Armado de castillos/columnas según su nomenclatura",
+              "isCompleted": false
+            },
+            {
+              "id": 5,
+              "name": "Armado de losa de cimentacion: Contratrabes, bastones, distancias, malla electrosoldada",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "INSTALACIONES GENERALES HIDROSANITARIA, GAS Y ELECTRICAS",
+          "tasks": [
+            {
+              "id": 6,
+              "name": "Contar con todas las salidas hidrosanitarias y gas",
+              "isCompleted": false
+            },
+            {
+              "id": 7,
+              "name": "Alturas y nivelacion de salidas hidraulicas en labavos y tarja",
+              "isCompleted": false
+            },
+            {
+              "id": 8,
+              "name": "Tapones y sellados de salidas antes del colado",
+              "isCompleted": false
+            },
+            {
+              "id": 9,
+              "name": "Revisicion general del buen estado de las tuberias antes de colado",
+              "isCompleted": false
+            },
+            {
+              "id": 10,
+              "name": "Poliductos sin dobleces y en buen estado en cimentacion",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "COLADO DE LOSA",
+          "tasks": [
+            {
+              "id": 11,
+              "name": "Nivelacion y vibrado de concreto",
+              "isCompleted": false
+            },
+            {
+              "id": 12,
+              "name": "Terminado planeado de losa",
+              "isCompleted": false
+            },
+            {
+              "id": 13,
+              "name": "Curado de losa",
+              "isCompleted": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "MUROS",
+      "tests": [],
+      "categories": [
+        {
+          "id": 5,
+          "name": "DEPLANTES DE MUROS ",
+          "tasks": [
+            {
+              "id": 14,
+              "name": "Escuadres y plomos de muros",
+              "isCompleted": false
+            },
+            {
+              "id": 15,
+              "name": "Tipo de muro: Tabicon soga, capuchino, tezon o novablock",
+              "isCompleted": false
+            },
+            {
+              "id": 16,
+              "name": "Muros con refuerzo horizontal o malla electrosoldada",
+              "isCompleted": false
+            },
+            {
+              "id": 17,
+              "name": "Espesor y reboques de juntas: CORREGIR RAPIDAMENTE",
+              "isCompleted": false
+            },
+            {
+              "id": 18,
+              "name": "Mueleo y distancias con castillos",
+              "isCompleted": false
+            },
+            {
+              "id": 19,
+              "name": "Vanos de puertas y ventanas",
+              "isCompleted": false
+            },
+            {
+              "id": 20,
+              "name": "Alturas de muros bajos y repisones de refuerzos",
+              "isCompleted": false
+            },
+            {
+              "id": 21,
+              "name": "Altura de cerramientos y longitud de dalas",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "COLADO DE CASTILLOS Y DALAS",
+          "tasks": [
+            {
+              "id": 22,
+              "name": "Plomos de castillos",
+              "isCompleted": false
+            },
+            {
+              "id": 23,
+              "name": "Colado de castillos y dalas sin oquedades: CORREGIR RAPIDAMENTE",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "INSTALACIONES",
+          "tasks": [
+            {
+              "id": 24,
+              "name": "Colocacion de poliductos en castillos (por fuera del armado)",
+              "isCompleted": false
+            },
+            {
+              "id": 25,
+              "name": "Colocacion de chalupas y cajas arbotantes",
+              "isCompleted": false
+            },
+            {
+              "id": 26,
+              "name": "Colocacion de pasos y drenes de aire acondicionado si aplican",
+              "isCompleted": false
+            },
+            {
+              "id": 27,
+              "name": "Colocacion de salida extractores y su alimentacion electrica",
+              "isCompleted": false
+            },
+            {
+              "id": 28,
+              "name": "Alturas de chlupas: contactos 35cm  y apagadores 1.10 al centro de la chalupa. Cuidar recubrimientos",
+              "isCompleted": false
+            },
+            {
+              "id": 29,
+              "name": "Nivelacion y centrado de chalupas: tv, cocina, baños",
+              "isCompleted": false
+            },
+            {
+              "id": 30,
+              "name": "Centrado de cajas de arbotantes de lavabo con inst. sanit.",
+              "isCompleted": false
+            },
+            {
+              "id": 31,
+              "name": "Ranurado, resanado y colado de inst hidrosanitaria de tarja, lavabos, calentador y regadera",
+              "isCompleted": false
+            },
+            {
+              "id": 32,
+              "name": "RESANE AL MOMENTO DE RANURAS",
+              "isCompleted": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "LOSA",
+      "tests": [],
+      "categories": [
+        {
+          "id": 8,
+          "name": "ARMADO DE LOSA",
+          "tasks": [
+            {
+              "id": 33,
+              "name": "Anclajes de castillos: armado y ubicación",
+              "isCompleted": false
+            },
+            {
+              "id": 34,
+              "name": "Armado de trabes: dimensiones y ubicación",
+              "isCompleted": false
+            },
+            {
+              "id": 35,
+              "name": "Cubos de luz ",
+              "isCompleted": false
+            },
+            {
+              "id": 36,
+              "name": "Malla electrosoldada",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "COLADO DE LOSA",
+          "tasks": [
+            {
+              "id": 37,
+              "name": "Nivelacion y vibrado de concreto",
+              "isCompleted": false
+            },
+            {
+              "id": 38,
+              "name": "Cuidar posibles movimiento de ductos, botes y tubos en descarga de concreto con bomba",
+              "isCompleted": false
+            },
+            {
+              "id": 39,
+              "name": "Terminado planeado de losa",
+              "isCompleted": false
+            },
+            {
+              "id": 40,
+              "name": "Curado de losa",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "INSTALACIONES",
+          "tasks": [
+            {
+              "id": 41,
+              "name": "Centrado de botes electricos en claros de habitaciones: cuidar espacios de closets",
+              "isCompleted": false
+            },
+            {
+              "id": 42,
+              "name": "Correcta fijacion de botes y poliductos",
+              "isCompleted": false
+            },
+            {
+              "id": 43,
+              "name": "Colocacion de refuerzos para ventiladores",
+              "isCompleted": false
+            },
+            {
+              "id": 44,
+              "name": "Colocacion de curvas conduit galvanizadas en salidas de tv",
+              "isCompleted": false
+            },
+            {
+              "id": 45,
+              "name": "Altura de codos de bajantes pluviales",
+              "isCompleted": false
+            },
+            {
+              "id": 46,
+              "name": "Colocacion de pasos de aire acondicionado",
+              "isCompleted": false
+            },
+            {
+              "id": 47,
+              "name": "Contar con todas las salidas hidrosanitarias",
+              "isCompleted": false
+            },
+            {
+              "id": 48,
+              "name": "Alturas y nivelacion de salidas hidraulicas en labavos ",
+              "isCompleted": false
+            },
+            {
+              "id": 49,
+              "name": "Tapones y sellados de salidas antes del colado",
+              "isCompleted": false
+            },
+            {
+              "id": 50,
+              "name": "Revisicion general del buen estado de las tuberias antes de colado",
+              "isCompleted": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "ALB AZO",
+      "tests": [{
+        "id": 2,
+        "name": "PRUEBA PLUVIAL AZOTEA",
+        "items": [
+          {
+            "id": 3,
+            "name": "ACABADO AZOTEA Y ESCURIMIENTO UNIFORME",
+            "description": "Prueba de escurimiento de agua con manguera, se humedece el area total de azotea hasta que escurra el agua hacia el bajante. A los 5 minutos se revisa la ausencia de estancamientos de agua. Se considera estancamiento toda parte que acumula arriba de 2 mm de agua sobre una superficie superior a 10x10 cm. Se revisa visualmente la calidad del floteado y la ausencia de imperfecciones, restos de mezcla, fisuras o levantamiento de fina etc. Se pasa adicionalmente una varilla en superficie para detectar areas huecas no vivibles sea en acabado fino o entortado."
+          }
+        ]
+      }],
+      "categories": [
+        {
+          "id": 11,
+          "name": "PRETILES Y ZAVALETAS",
+          "tasks": [
+            {
+              "id": 51,
+              "name": "Altura o hiladas acorde a proyecto",
+              "isCompleted": false
+            },
+            {
+              "id": 52,
+              "name": "Plomos, rebocados y espesores de juntas",
+              "isCompleted": false
+            },
+            {
+              "id": 53,
+              "name": "Colado de castillos sin oquedades",
+              "isCompleted": false
+            },
+            {
+              "id": 54,
+              "name": "Nivelacion de boquillas especialmente en domos",
+              "isCompleted": false
+            },
+            {
+              "id": 55,
+              "name": "Uniformidad de zavaletas y zavaletas en colindancias",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "ENTORTADO",
+          "tasks": [
+            {
+              "id": 56,
+              "name": "Aplicación de sellador unecreto previo a entortado",
+              "isCompleted": false
+            },
+            {
+              "id": 57,
+              "name": "Niveles de entortados para una adecuada pendiente",
+              "isCompleted": false
+            },
+            {
+              "id": 58,
+              "name": "Floteo para sellado de entortado y losa",
+              "isCompleted": false
+            },
+            {
+              "id": 59,
+              "name": "Recibir correctamente bajantes pluviales",
+              "isCompleted": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "ALB INT Y EXT",
+      "tests": [],
+      "categories": [
+        {
+          "id": 13,
+          "name": "ENJARRES Y FLOTEOS",
+          "tasks": [
+            {
+              "id": 60,
+              "name": "Plomos de enrrase y remates en parte alta y baja de muros",
+              "isCompleted": false
+            },
+            {
+              "id": 61,
+              "name": "Floteo uniformes en acabados, cuidar traslapes ",
+              "isCompleted": false
+            },
+            {
+              "id": 62,
+              "name": "Colocacion de junquillos bien recibidos",
+              "isCompleted": false
+            },
+            {
+              "id": 63,
+              "name": "Perfilado de chalupas y cajas de arbotantes",
+              "isCompleted": false
+            },
+            {
+              "id": 64,
+              "name": "Identificar los muros con recubrimientos para no flotearlos",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "name": "BOQUILLAS",
+          "tasks": [
+            {
+              "id": 65,
+              "name": "Revisar plomos y escuadras verticales y horizontales",
+              "isCompleted": false
+            },
+            {
+              "id": 66,
+              "name": "Medidas de alturas y anchos en vanos: Darle de juego 1cm maximo mas a lo ancho y 2.5cm a lo alto en puertas y 1cm maximo ancho/alto en ventanas de las medidas indicadas en plano",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "name": "YESOS",
+          "tasks": [
+            {
+              "id": 67,
+              "name": "Remates en union con muros",
+              "isCompleted": false
+            },
+            {
+              "id": 68,
+              "name": "Nivelacion de linea con union de muro",
+              "isCompleted": false
+            },
+            {
+              "id": 69,
+              "name": "Escuadres y filetes en domos o desniveles de losa",
+              "isCompleted": false
+            },
+            {
+              "id": 70,
+              "name": "Malla de refuerzo y espesor de capa de yeso 1.5cm",
+              "isCompleted": false
+            },
+            {
+              "id": 71,
+              "name": "Terminado pulido de la superficie",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "name": "BARRAS COCINA Y BAÑOS",
+          "tasks": [
+            {
+              "id": 72,
+              "name": "Armados, empotrados y muros de apoyo acorde a proyecto",
+              "isCompleted": false
+            },
+            {
+              "id": 73,
+              "name": "Nivelacion en colado",
+              "isCompleted": false
+            },
+            {
+              "id": 74,
+              "name": "Revisar dimensiones de proyecto: 1.5 cm en barras y 3 cm en desayunadores menores a medida de proyecto",
+              "isCompleted": false
+            },
+            {
+              "id": 75,
+              "name": "Corroborar alturas iguales entre barras, 1.5cm menor a altura de proyecto.",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "name": "ESCALERA",
+          "tasks": [
+            {
+              "id": 76,
+              "name": "Trazo de escalones, altura de peraltes y huellas",
+              "isCompleted": false
+            },
+            {
+              "id": 77,
+              "name": "Escuadres de escalones y descanzos",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "name": "REPISONES",
+          "tasks": [
+            {
+              "id": 78,
+              "name": "Identificar donde se requiere según proyecto",
+              "isCompleted": false
+            },
+            {
+              "id": 79,
+              "name": "Acabado pulido, cuidar remates en bordes y muros",
+              "isCompleted": false
+            },
+            {
+              "id": 80,
+              "name": "Altura de 9.5cm para salir a nivel con zoclo de 8cm y piso",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "name": "MOLDURAS Y GOTEROS",
+          "tasks": [
+            {
+              "id": 81,
+              "name": "Revisar espesores en goteros según el modelo de vivienda: sencillo en marquesinas macizas, dobles marquesinas de bovedilla",
+              "isCompleted": false
+            },
+            {
+              "id": 82,
+              "name": "Revisar espesores, plomos y nivelacion de molduras",
+              "isCompleted": false
+            },
+            {
+              "id": 83,
+              "name": "Moldura tipo gotero espesor y alcance en puertas y ventanas",
+              "isCompleted": false
+            },
+            {
+              "id": 84,
+              "name": "En fachadas laterales revisar proyecto y que aplica",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "name": "SARDINELES",
+          "tasks": [
+            {
+              "id": 85,
+              "name": "Ancho y alto: 1.5 menor a proyecto en lo alto y 3cm a lo ancho",
+              "isCompleted": false
+            },
+            {
+              "id": 86,
+              "name": "Escuadre de sardinel",
+              "isCompleted": false
+            },
+            {
+              "id": 87,
+              "name": "Medida de charola interior, tomar en cuenta recubrimientos de muro y sardinel",
+              "isCompleted": false
+            },
+            {
+              "id": 88,
+              "name": "Verificar que se realicen en el proceso de albañileria",
+              "isCompleted": false
+            },
+            {
+              "id": 89,
+              "name": "Identificar sardineles en terrazas",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "name": "INSTALACIONES",
+          "tasks": [
+            {
+              "id": 90,
+              "name": "Empapelar o colocar poliestireno en cajas y chalupas",
+              "isCompleted": false
+            },
+            {
+              "id": 91,
+              "name": "Revisar posibles ductos faltantes para que se realicen por lo menos antes de flotear: RESANAR RAPIDAMENTE",
+              "isCompleted": false
+            },
+            {
+              "id": 92,
+              "name": "Rebocado de instalaciones hidrosanitarias de lavabo y tarja",
+              "isCompleted": false
+            },
+            {
+              "id": 93,
+              "name": "Volver a verificar salidas hidrosanitarias en patio de servicio: lavadero, lavadoras y calentador para hacer las adecuaciones si fuera el caso antes de los floteos",
+              "isCompleted": false
+            },
+            {
+              "id": 94,
+              "name": "Colocacion del centro de carga para recibirlo correctamente",
+              "isCompleted": false
+            },
+            {
+              "id": 95,
+              "name": "Guiar ductos electricos para identificar posibles tapones",
+              "isCompleted": false
+            },
+            {
+              "id": 96,
+              "name": "Corroborar colocacion de inst. de extractor en baño",
+              "isCompleted": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "OBRA EXTERIOR",
+      "tests": [],
+      "categories": [
+        {
+          "id": 22,
+          "name": "PISOS Y FIRMES",
+          "tasks": [
+            {
+              "id": 97,
+              "name": "Dimensiones de banqueta y huella de cochera: 1m de ancho banqueta y 55cm huellas, logitud según proyecto",
+              "isCompleted": false
+            },
+            {
+              "id": 98,
+              "name": "Cortes en huellas y banquetas",
+              "isCompleted": false
+            },
+            {
+              "id": 99,
+              "name": "Cuidar pendiente para garantizar escurrimiento",
+              "isCompleted": false
+            },
+            {
+              "id": 100,
+              "name": "Limpieza de mezcla, pegapiso y pintura",
+              "isCompleted": false
+            },
+            {
+              "id": 101,
+              "name": "Ver proyecto de firme en patio de servicio",
+              "isCompleted": false
+            },
+            {
+              "id": 102,
+              "name": "Base para cilindro de gas cuando aplique",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "name": "NIVELACION DE COCHERA Y PATIO",
+          "tasks": [
+            {
+              "id": 103,
+              "name": "Corte de cochera antes de terminar albañileria exterior para cuidar remates de aplanados.",
+              "isCompleted": false
+            },
+            {
+              "id": 104,
+              "name": "Afine y corte de cochera antes de terminar albañileria exterior para cuidar remates de aplanados y niveles de firmes",
+              "isCompleted": false
+            },
+            {
+              "id": 105,
+              "name": "Cuidar desniveles hacia rejilla pluvial en patio posterior",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "name": "PATIO POSTERIOR",
+          "tasks": [
+            {
+              "id": 106,
+              "name": "Perfilado de salida de gas dentro de la albañileria",
+              "isCompleted": false
+            },
+            {
+              "id": 107,
+              "name": "Forjado de muro bajo para inst. dentro de albañileria",
+              "isCompleted": false
+            },
+            {
+              "id": 108,
+              "name": "Colocacion de lavadero, cuidar nivelacion y altura de 90cm. Muros de apoyo cuidar emboquillado, perfilado y aplanado",
+              "isCompleted": false
+            },
+            {
+              "id": 109,
+              "name": "Colocacion de regilla pluvial. Perfilado y terminado de registro",
+              "isCompleted": false
+            },
+            {
+              "id": 110,
+              "name": "Barda de patio, revisar numero de hiladas, acabado semiaparente bien realizado y perfilado de dala de cerramiento",
+              "isCompleted": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "ACABADOS",
+      "tests": [{
+        "id": 3,
+        "name": "PRUEBAS ACABADOS",
+        "items": [
+          {
+            "id": 4,
+            "name": "CANCELERIAS",
+            "description": "Correcto funcionamiento de seguros y chapas que cierren con facilidad y no presenten friccion o tope. Se revisa que deslicen bien los corredizos de las ventanas y mosquiteros. Se revisan abatimientos y funcionamiento de bisagras."
+          },
+          {
+            "id": 5,
+            "name": "INST. MUEBLES Y GRIFERIA",
+            "description": "Prueba de escurimiento y uso de todos los muebles, revisando correcta y optima instalacion hidraulica de alimentacion con mangueras y desague de drenaje. Asi como la calidad del sellado del mueble sobre su soporte (sea piso, barra o mueble de madera o otro material) se realiza mojando con abundante agua la union del mueble con grieria y sello con soporte."
+          },
+          {
+            "id": 6,
+            "name": "RESISTENCIA DEL IMPERMEABILIZANTE",
+            "description": "Llenado del azotea por lo menos con 1 cm de agua en partes mas altas del perimetro tapando el bajante pluvial. Se permanece estancado 20 minutos y libera el agua en una descarga. Se revisa salidas pluviales funcionando y reaccion del registro pluvial en patio y cubo de luz (que no suba el agua ahi) para descartar taponeamientos o daños a la tuberia. Se monitorea durante las siguientes 24 horas la aparicion de manchas de humedad en plafon correspondiente. Se observa en general la colocacion con calidad del impermeabilizante, sobre todo en uniones entre viviendas, en Bajante Pluvial y salidas de instalaciones o cambios de nivel de la losa."
+          },
+          {
+            "id": 7,
+            "name": "INST. ELECTRICA",
+            "description": "Prueba de encendido de focos y de optima instalacion de contacto  (puede ser voltimetro o controlador electrico: debe de indicar si el contacto esta aterizado o no y si fase y neutro estan en su correcta ubicación) "
+          },{
+            "id": 8,
+            "name": "GUIA MEGACABLE",
+            "description": "Revisar que exista la guía y que sea facil de mover de un lado a otro para garantizar que no existan obstrucciones en ducteria."
+          }
+        ]
+      }],
+      "categories": [
+        {
+          "id": 25,
+          "name": "PISOS Y AZULEJOS",
+          "tasks": [
+            {
+              "id": 111,
+              "name": "Altura azulejos de regadera: 2.20mts con recorte en parte baja",
+              "isCompleted": false
+            },
+            {
+              "id": 112,
+              "name": "Chaflanes en azulejos bien detallado",
+              "isCompleted": false
+            },
+            {
+              "id": 113,
+              "name": "Azulejo sobre lavabo 3 piezas verticales",
+              "isCompleted": false
+            },
+            {
+              "id": 114,
+              "name": "Azulejo en muros de lavabo y/o WC 1.20 altura",
+              "isCompleted": false
+            },
+            {
+              "id": 115,
+              "name": "Nicho de baño: al centro de charola, de 2 piezas completas, despatillado, altura de 2.5pzas inicio de nicho. Dar pendiente a la base para que no se estanque el agua en el nicho",
+              "isCompleted": false
+            },
+            {
+              "id": 116,
+              "name": "Impermineral en charolas de regadera en P.A. y en terrazas previas a colocacion de piso",
+              "isCompleted": false
+            },
+            {
+              "id": 117,
+              "name": "Altura azulejor muro de cocina: 30cm con despatille y forrado de boquilla en ventana",
+              "isCompleted": false
+            },
+            {
+              "id": 118,
+              "name": "Ver trazo del azulejo según proyecto y dimensiones de barras",
+              "isCompleted": false
+            },
+            {
+              "id": 119,
+              "name": "Despatilles en perimetro de barras ",
+              "isCompleted": false
+            },
+            {
+              "id": 120,
+              "name": "Detallar parte inferior de barra",
+              "isCompleted": false
+            },
+            {
+              "id": 121,
+              "name": "Sardinel con chaflanes, cuidar alturas y anchos constantes. Dar un pequeño desnivel hacia el interior",
+              "isCompleted": false
+            },
+            {
+              "id": 122,
+              "name": "Piso cercamico pendiente en piezas de accesos para que escurra el agua de lluvia",
+              "isCompleted": false
+            },
+            {
+              "id": 123,
+              "name": "Piso ceramico cuidar escuadres, y nivelacion para evitar topes",
+              "isCompleted": false
+            },
+            {
+              "id": 124,
+              "name": "Chaflanes en zoclos bien detallados",
+              "isCompleted": false
+            },
+            {
+              "id": 125,
+              "name": "Fachaleta cuidar niveles de hiladas y espesores de junta",
+              "isCompleted": false
+            },
+            {
+              "id": 126,
+              "name": "Fachaleta cuidar remate en alturas para que no existan descuadres o areas donde no entre ya un recorte",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "name": "PUERTAS Y VENTANAS",
+          "tasks": [
+            {
+              "id": 127,
+              "name": "Impermeabilizante en boquilla de ventanas",
+              "isCompleted": false
+            },
+            {
+              "id": 128,
+              "name": "Cuidar correcto sellado de perimetro de canceleria por ambos lados",
+              "isCompleted": false
+            },
+            {
+              "id": 129,
+              "name": "Cuidar que se pongan todas las pijas en marcos y bisagras.",
+              "isCompleted": false
+            },
+            {
+              "id": 130,
+              "name": "Correcto funcionamiento de chapas, hacer ajustes para su correcto cierre",
+              "isCompleted": false
+            },
+            {
+              "id": 131,
+              "name": "Correcto funcionamiento de seguros y jaladeras, hacer ajustes para su correto cierre",
+              "isCompleted": false
+            },
+            {
+              "id": 132,
+              "name": "Colocar tope en puerta de ingreso, cuidar que la puerta abra complemtamente a 90°",
+              "isCompleted": false
+            },
+            {
+              "id": 133,
+              "name": "Colocacion de mosquiteros y correcto funcionamiento",
+              "isCompleted": false
+            },
+            {
+              "id": 134,
+              "name": "En caso de boquillas muy grandes rellenar vano y colocar perfil de aluminio para dar mejor vista",
+              "isCompleted": false
+            },
+            {
+              "id": 135,
+              "name": "Detallar y pintar marcos y puertas rayadas o dañadas. Especial cuidado en filetes y cantos de puertas para que se pinten",
+              "isCompleted": false
+            },
+            {
+              "id": 136,
+              "name": "Colocacion de guardapolvos en puerta principal y de patio de servicio, resanar huecos en guardapolvos y/o puertas",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "name": "MUEBLES DE BAÑO",
+          "tasks": [
+            {
+              "id": 137,
+              "name": "Centrado en espacios colocacion de muebles ",
+              "isCompleted": false
+            },
+            {
+              "id": 138,
+              "name": "Correcta fijacion y sellado de wc",
+              "isCompleted": false
+            },
+            {
+              "id": 139,
+              "name": "Correcta fijacion y sellado de lavabo",
+              "isCompleted": false
+            },
+            {
+              "id": 140,
+              "name": "Correcta fijacion y sellado de tarja",
+              "isCompleted": false
+            },
+            {
+              "id": 141,
+              "name": "Detectar fugas en cespols, sellados, mangueras o conexiones",
+              "isCompleted": false
+            },
+            {
+              "id": 142,
+              "name": "Verificar modelos de muebles, monomandos, mezcladoras y accesorios acorde a especificaciones de proyecto",
+              "isCompleted": false
+            },
+            {
+              "id": 143,
+              "name": "Correcta ubicación de accesorios de baño: toallero, papelero, jabonero y cepillero",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "name": "IMPERMEABILIZANTE",
+          "tasks": [
+            {
+              "id": 144,
+              "name": "Revisar sellados entre rollos",
+              "isCompleted": false
+            },
+            {
+              "id": 145,
+              "name": "Nivelacion de recortes en pretiles y domos",
+              "isCompleted": false
+            },
+            {
+              "id": 146,
+              "name": "Recibir bajantes correctamente",
+              "isCompleted": false
+            },
+            {
+              "id": 147,
+              "name": "Revision general de no bordos, abultados o detalles en imper",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "name": "PINTURA",
+          "tasks": [
+            {
+              "id": 148,
+              "name": "*Cuidar recortes y limpieza, debe de quitar manchas en pisos y azulejos dentro de su trabajo.*Cuidar tonos y calidades acorde a las zonas a pintar.*Terminacion de los trabajos 100% real. Entregar vivienda lista en tema de pintura.",
+              "isCompleted": false
+            },
+            {
+              "id": 149,
+              "name": "Limpieza y preparacion de superficie a pintar, libre de rebabas y yesos.",
+              "isCompleted": false
+            },
+            {
+              "id": 150,
+              "name": "Recortes en uniones con plafon y cambios de tono",
+              "isCompleted": false
+            },
+            {
+              "id": 151,
+              "name": "Limpieza de pisos y azulejos",
+              "isCompleted": false
+            },
+            {
+              "id": 152,
+              "name": "Limpieza de firmes de concreto",
+              "isCompleted": false
+            },
+            {
+              "id": 153,
+              "name": "Limpieza de puertas y ventanas",
+              "isCompleted": false
+            },
+            {
+              "id": 154,
+              "name": "Limpieza de muebles de baño y accesorios",
+              "isCompleted": false
+            },
+            {
+              "id": 155,
+              "name": "Limpieza y cuidado de accesorios electricos",
+              "isCompleted": false
+            },
+            {
+              "id": 156,
+              "name": "Cuidar tonos y calidades usadas para cumplir con especificaciones y para posibles garantias y repintados ",
+              "isCompleted": false
+            },
+            {
+              "id": 157,
+              "name": "Terminacion y entrega de los trabajos al 100%",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "name": "INSTALACIONES ELECTRICAS",
+          "tasks": [
+            {
+              "id": 158,
+              "name": "Revisar plano y verificar ubicación de contactos, apagadores y demas accesorios conforme a proyecto. CUIDAR LA COLOCACION DE CONTACTOS CON FALLA A TIERRA",
+              "isCompleted": false
+            },
+            {
+              "id": 159,
+              "name": "Conexión de alimentacion de vivienda para su prueba, revisar amperaje de pastillas acorde a detalles electricos en plano",
+              "isCompleted": false
+            },
+            {
+              "id": 160,
+              "name": "Verificar perfilado de chalupas que cubra correctamente la tapa",
+              "isCompleted": false
+            },
+            {
+              "id": 161,
+              "name": "Verificar perfilado de botes en plafones para que cubra correctamente la luminaria",
+              "isCompleted": false
+            },
+            {
+              "id": 162,
+              "name": "Salidas de TV dejar con guia galvanizada",
+              "isCompleted": false
+            },
+            {
+              "id": 163,
+              "name": "Limpieza de accesorios ",
+              "isCompleted": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "ENTORNO",
+      "tests": [],
+      "categories": [
+        {
+          "id": 31,
+          "name": "BANQUETAS Y MACHUELOS",
+          "tasks": [
+            {
+              "id": 164,
+              "name": "Verificar que no existan banquetas tronadas ni machuelos dsespostillados, corregir si es necesarios. Limpieza ",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "name": "EMPEDRADOS",
+          "tasks": [
+            {
+              "id": 165,
+              "name": "Limpieza de empedrados de arena, mezcla o tierra excesiva",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "name": "JARDINERIA",
+          "tasks": [
+            {
+              "id": 166,
+              "name": "Pasto tanto en vivienda como en arriates con su respectivo arbol",
+              "isCompleted": false
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "name": "MURETE ELECTRICO Y CUADRO MEDIDOR",
+          "tasks": [
+            {
+              "id": 167,
+              "name": "Bien perfilado, chuleado y pintado. Limpieza general",
+              "isCompleted": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "ADICIONALES",
+      "tests": [],
+      "categories": []
+    }
+  ]
+}
