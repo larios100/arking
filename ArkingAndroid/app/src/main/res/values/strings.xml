@@ -29,4 +29,21 @@
     <string name="oti">Oti</string>
     <string name="cancel">Cancelar</string>
     <string name="save_and_close">Guardar y cerrar</string>
+    <string name="status_open">En proceso</string>
+    <string name="status_pending">Pendiente</string>
+    <string name="status_done">Terminado</string>
+    <string name="status_canceled">Cancelado</string>
+    <string name="status_procesing">En proceso</string>
+    <string name="description_required">El campo Descripción es requerido</string>
+    <string name="concept_required">El campo Concepto es requerido</string>
+    <string name="invalid_format">Formato inválido</string>
+    <string name="field_required">Campo requerido</string>
+    <string name="cost_indirect">Precio Unitario (CD + CI)</string>
+    <string name="cost_direct">(CD) Costo directo</string>
+    <string name="add_tools_default">Agregar herremienta default</string>
+    <string name="sign_resident">Firma residente</string>
+    <string name="sign_lega">Firma lega</string>
+    <string name="clean">Limpiar</string>
+    <string name="sign_error">Error al guardar la firma</string>
+    <string name="unique_indirect">(CI) Indirecto Unico</string>
 </resources>

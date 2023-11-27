@@ -17,8 +17,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.arking.ui.theme.ArkingTheme
-import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.File
 import java.util.concurrent.Executor
 
@@ -31,32 +29,30 @@ fun ArkingApp(
     onImageCaptured: (Uri) -> Unit,
     onError: (ImageCaptureException) -> Unit
 ) {
-    ArkingTheme {
-        val navController: NavHostController = rememberNavController()
-        var buttonsVisible = remember { mutableStateOf(true) }
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    colors = TopAppBarDefaults.mediumTopAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        titleContentColor = MaterialTheme.colorScheme.primary,
-                    ),
-                    title = {
-                        Text("Arking")
-                    }
-                )
-            },
-            bottomBar = {
-                BottomBar(
-                    navController = navController,
-                    state = buttonsVisible,
-                    modifier = Modifier
-                )
-            }
-        ) { innerPadding ->
-            Box(Modifier.padding(innerPadding)) {
-                ArkingNavGraph(navController = navController,outputDirectory,executor,onImageCaptured,onError,applicationContext)
-            }
+    val navController: NavHostController = rememberNavController()
+    var buttonsVisible = remember { mutableStateOf(true) }
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                colors = TopAppBarDefaults.mediumTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                ),
+                title = {
+                    Text("Arking")
+                }
+            )
+        },
+        bottomBar = {
+            BottomBar(
+                navController = navController,
+                state = buttonsVisible,
+                modifier = Modifier
+            )
+        }
+    ) { innerPadding ->
+        Box(Modifier.padding(innerPadding)) {
+            ArkingNavGraph(navController = navController,outputDirectory,executor,onImageCaptured,onError,applicationContext)
         }
     }
 }

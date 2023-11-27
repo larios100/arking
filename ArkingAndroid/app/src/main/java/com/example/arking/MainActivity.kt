@@ -9,7 +9,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.arking.ui.theme.ArkingTheme
+//import com.example.arking.ui.theme.ArkingTheme
+import com.example.arking.ui.theme.ReplyTheme
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.util.concurrent.ExecutorService
@@ -33,7 +34,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ArkingTheme {
+            ReplyTheme {
+
                 ArkingApp(outputDirectory,cameraExecutor,onImageCaptured = ::handleImageCapture,
                     onError = { Log.e("kilo", "View error:", it) }, applicationContext = this
                 )

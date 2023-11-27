@@ -2,6 +2,7 @@ package com.example.arking.ui.contracts
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,8 +12,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.KeyboardArrowRight
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,6 +36,8 @@ import com.example.arking.model.Contract
 import com.example.arking.model.Part
 import com.example.arking.presentation.contracts.ContractState
 import com.example.arking.presentation.contracts.ContractViewModel
+import com.example.arking.ui.components.ListItem
+import com.example.arking.ui.components.TextStatus
 
 /**
  * The Contracts screen.
@@ -76,41 +82,6 @@ fun Accordion(modifier: Modifier = Modifier, model: Contract,onContractClick: (C
             //navController.navigate("contracts/"+ model.id)
         }
     }
-
-    /*
-    Column(
-        modifier
-            .padding(horizontal = 16.dp, vertical = 8.dp)
-
-        ) {
-
-        AnimatedVisibility(visible = expanded) {
-            Surface(
-                color = Color.White,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(1.dp, Color.LightGray),
-                modifier = Modifier.padding(top = 8.dp)
-            ) {
-                model.Part.forEach(){
-                    Row(modifier= Modifier.fillMaxWidth()
-                        ) {
-                        Text(it.name)
-                    }
-
-                    Divider(color = Color.Gray, thickness = 1.dp)
-                }
-                /*LazyColumn()
-                {
-                    items(model.Part){
-                        AccordionRow(it){
-                            navController.navigate("tasks/" + it.id)
-                        }
-                        Divider(color = Color.Gray, thickness = 1.dp)
-                    }
-                }*/
-            }
-        }
-    }*/
 }
 @Composable
 private fun AccordionHeader(
@@ -118,41 +89,30 @@ private fun AccordionHeader(
     isExpanded: Boolean = false,
     onTapped: () -> Unit = {}
 ) {
-    Surface(
-        color = Color.White,
-        shape = RoundedCornerShape(8.dp),
-        border = BorderStroke(1.dp, GetColorStatus(contract)),
-    ) {
+    ListItem() {
         Row(
             modifier = Modifier
                 .clickable { onTapped() }
-                .padding(16.dp),
+                .padding(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(modifier = Modifier.weight(1f).fillMaxWidth()) {
-                Text(contract.name, Modifier, color = Color.Black, fontSize = 20.sp)
-                Text(contract.description, Modifier, color = Color.Gray)
+            Column(modifier = Modifier
+                .weight(0.8f)
+                .fillMaxWidth()) {
+                Text(contract.name, Modifier, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text(contract.description, Modifier)
             }
+            TextStatus(status = contract.status,modifier = Modifier
+                .weight(0.2f))
             Icon(
-                Icons.Outlined.KeyboardArrowRight,
+                Icons.AutoMirrored.Outlined.KeyboardArrowRight,
                 contentDescription = "arrow-right",
-                tint = Color.Gray
             )
         }
     }
 }
 
-private fun GetColorStatus(contract: Contract): Color {
-    if(contract.status == "Open")
-        return Color.Blue
-    if(contract.status == "Pending")
-        return Color.Gray
-    if(contract.status == "Done")
-        return Color.Green
-    if(contract.status == "Canceled")
-        return Color.Red
-    return Color.Blue
-}
+
 
 @Preview(name="Open")
 @Composable

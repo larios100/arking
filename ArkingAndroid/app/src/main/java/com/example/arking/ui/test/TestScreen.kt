@@ -59,6 +59,7 @@ import com.example.arking.presentation.tests.TestState
 import com.example.arking.presentation.tests.TestViewModel
 import com.example.arking.ui.components.MyDatePickerDialog
 import com.example.arking.ui.components.PartGallery
+import com.example.arking.ui.components.Textarea
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.ZoneOffset
@@ -305,18 +306,7 @@ private fun convertMillisToDate(millis: Long): String {
     Log.i("Date",  "date  " + Date(millis).toString())
     return formatter.format(Date(millis))
 }
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun Textarea(text: String, onValueChange: (String) -> Unit) {
-    TextField(
-        value = text,
-        onValueChange = { onValueChange(it) }, modifier = Modifier
-            .fillMaxWidth()
-            .height(100.dp)
-            .padding(10.dp)
-            .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
-    )
-}
+
 
 
 @Composable

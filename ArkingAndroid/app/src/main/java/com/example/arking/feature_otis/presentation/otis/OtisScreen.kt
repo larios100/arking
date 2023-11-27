@@ -19,6 +19,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -31,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -38,6 +40,8 @@ import androidx.navigation.NavController
 import com.example.arking.R
 import com.example.arking.feature_otis.domain.model.Oti
 import com.example.arking.feature_otis.util.Screen
+import com.example.arking.ui.components.ListItem
+import com.example.arking.ui.components.TextStatus
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -61,7 +65,9 @@ fun OtisScreen(
             }
         },
     ) {innerPadding->
-        Box(modifier = Modifier.padding(innerPadding)){
+        Box(modifier = Modifier
+            .padding(innerPadding)
+            .padding(horizontal = 16.dp, vertical = 8.dp)){
             if(state.otis.any()){
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(state.otis) { oti ->
@@ -71,11 +77,12 @@ fun OtisScreen(
                                 .fillMaxWidth()
                                 .clickable {
                                     navController.navigate(
-                                        ""
+                                        Screen.AddEditNoteOti.route +
+                                                "?otiId=${oti.id}"
                                     )
                                 },
                         )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(8.dp))
                     }
                 }
             }
@@ -89,23 +96,22 @@ fun OtisScreen(
 
 @Composable
 fun OtiItem(oti: Oti, modifier: Modifier) {
-    Surface(
-        color = Color.White,
-        shape = RoundedCornerShape(8.dp),
-        border = BorderStroke(1.dp, Color.LightGray),
+    ListItem(
     ) {
         Row(
-            modifier = Modifier
-                .padding(16.dp),
+            modifier = modifier
+                .padding(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(modifier = Modifier
-                .weight(1f)
+                .weight(0.6f)
                 .fillMaxWidth()) {
-                Text(oti.description, Modifier, color = Color.Black, fontSize = 20.sp)
-                Text(oti.date, Modifier, color = Color.Gray)
-                Text(oti.startDate, Modifier, color = Color.Gray)
+                Text(oti.description, Modifier, fontWeight = FontWeight.Bold)
             }
+            Text(text = oti.date,modifier = Modifier
+                .weight(0.2f))
+            TextStatus(status = "Processing",modifier = Modifier
+                .weight(0.2f))
             Icon(
                 Icons.AutoMirrored.Outlined.KeyboardArrowRight,
                 contentDescription = "arrow-right",

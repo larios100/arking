@@ -1,0 +1,11 @@
+{
+  "tools": [{
+    "name": "HERRAMIENTA MENOR",
+    "percentage": 0.02
+    },
+    {
+      "name": "EQUIPO DE PROTECCION PERSONAL",
+      "percentage": 0.03
+    }],
+  "percentageIndirectCost": 0.15
+}

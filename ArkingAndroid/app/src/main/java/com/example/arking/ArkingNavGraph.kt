@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.camera.core.ImageCaptureException
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -127,8 +128,18 @@ fun ArkingNavGraph(navController: NavHostController,
         }
         composable(com.example.arking.feature_otis.util.Screen.AddEditNoteOti.route
                 +
-                "?otiId={otiId}"){
-            AddEditOtiScreen()
+                "?otiId={otiId}",
+            arguments = listOf(
+                navArgument(
+                    name = "otiId"
+                ) {
+                    type = NavType.StringType
+                    defaultValue = ""
+                }
+                )){
+            AddEditOtiScreen(onBackClick = {
+                navController.navigateUp()
+            })
         }
     }
 }
@@ -139,8 +150,7 @@ fun BottomBar(
     val screens = arkingTabRowScreens
 
     NavigationBar(
-        modifier = modifier,
-        containerColor = Color.White,
+        modifier = modifier
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -164,9 +174,6 @@ fun BottomBar(
                         restoreState = true
                     }
                 },
-                colors = NavigationBarItemDefaults.colors(
-                    unselectedTextColor = Color.Gray, selectedTextColor = Color.Blue
-                ),
             )
         }
     }
