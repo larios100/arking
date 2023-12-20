@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.arking.data.JsonDataHelper
 import com.example.arking.data.test.TestDao
+import com.example.arking.feature_otis.domain.utils.SignType
 import com.example.arking.model.GalleryItem
 import com.example.arking.model.PartTask
 import com.example.arking.model.PartTest
@@ -31,6 +32,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.lang.Integer.parseInt
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
@@ -115,7 +117,21 @@ class TestViewModel @Inject constructor (
                     it.copy(showGallery = !it.showGallery)
                 }
             }
-            is TestEvent.save -> {
+            is TestEvent.SingTest -> {
+                _state.value = _state.value.copy(isSinging = true, singType = event.signType)
+            }
+            is TestEvent.CancelSing ->{
+                _state.value = _state.value.copy(isSinging = false)
+            }
+            is TestEvent.SaveSing -> {
+                if(_state.value.singType == SignType.Resident){
+                    _state.value = _state.value.copy(isSinging = false, signResident = event.path)
+                }
+                else{
+                    _state.value = _state.value.copy(isSinging = false, signAuditor = event.path)
+                }
+            }
+            is TestEvent.Save -> {
                 viewModelScope.launch {
                     val complexId = _partId.toString() + "_" + _testId.toString()
                     testDao.upsertPartTest(

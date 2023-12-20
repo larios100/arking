@@ -33,6 +33,7 @@ fun CurrencyTextField(
     Log.i("CurrencyTextField", value)
     TextField(
         value = value,
+        singleLine = true,
         modifier = modifier,
         placeholder= {
                      Text(text = placeholder)

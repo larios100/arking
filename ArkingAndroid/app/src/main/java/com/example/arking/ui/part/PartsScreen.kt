@@ -29,12 +29,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.arking.model.Contract
 import com.example.arking.model.PartWithPrototype
 import com.example.arking.presentation.parts.PartsViewModel
+import com.example.arking.ui.components.ListItem
 
 /**
  * The Contracts screen.
@@ -54,14 +56,14 @@ fun PartsScreen(
                 TopAppBar(
                     colors = TopAppBarDefaults.mediumTopAppBarColors(
                         containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        titleContentColor = MaterialTheme.colorScheme.primary,
+                        titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     ),
                     title = {
                         Text(state.contract!!.name)
                     },
                     navigationIcon = {
                         IconButton(onClick = { onBackClick() }) {
-                            Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = MaterialTheme.colorScheme.primary)
+                            Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = MaterialTheme.colorScheme.onPrimaryContainer)
                         }
                     }
                 )
@@ -98,7 +100,7 @@ fun PartsContent(
                 parts.forEach { item ->
                     item {
                         Column(modifier
-                            .padding(horizontal = 16.dp, vertical = 8.dp)) {
+                            .padding(horizontal = 8.dp, vertical = 8.dp)) {
                             ParteItem(model = item){
                                 onPartClick(item)
                                 //navController.navigate("tasks/"+ item.id)
@@ -113,21 +115,18 @@ fun PartsContent(
 }
 @Composable
 fun ParteItem(modifier: Modifier = Modifier, model: PartWithPrototype,onTapped: () -> Unit = {}) {
-    Surface(
-        color = Color.White,
-        shape = RoundedCornerShape(8.dp),
-        border = BorderStroke(1.dp, Color.LightGray),
+    ListItem(
     ) {
         Row(
             modifier = Modifier
                 .clickable { onTapped() }
-                .padding(16.dp),
+                .padding(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(modifier = Modifier.weight(1f).fillMaxWidth()) {
-                Text(model.name, Modifier, color = Color.Black, fontSize = 20.sp)
-                Text(model.description, Modifier, color = Color.Gray)
-                Text("Modelo: "+model.prototype, Modifier, color = Color.Gray)
+                Text(model.name, Modifier, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text(model.description, Modifier)
+                Text("Modelo: "+model.prototype, Modifier)
             }
             Icon(
                 Icons.AutoMirrored.Outlined.KeyboardArrowRight,

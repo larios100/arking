@@ -46,4 +46,9 @@
     <string name="clean">Limpiar</string>
     <string name="sign_error">Error al guardar la firma</string>
     <string name="unique_indirect">(CI) Indirecto Unico</string>
+    <string name="error_token_notfound">No se pudo obtener el token</string>
+    <string name="error_invalid_credentials">Usuario y/o contraseña inválidas</string>
+    <string name="error_500">Ocurrió un error indesperado, favor de intentar mas tarde</string>
+    <string name="error_forbidden">Usuario no autorizado</string>
+    <string name="sync_inprogress">Sincronizando información, favor de permanecer en la pantalla</string>
 </resources>

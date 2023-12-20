@@ -3,7 +3,7 @@ package com.example.arking.feature_otis.presentation.add_edit_oti
 import com.example.arking.feature_otis.domain.model.OtiConcepts
 import com.example.arking.feature_otis.domain.utils.ConceptType
 import com.example.arking.feature_otis.domain.utils.SignType
-import com.example.arking.feature_otis.domain.utils.UiText
+import com.example.arking.utils.UiText
 import java.util.UUID
 
 data class AddEditOtiState(

@@ -37,6 +37,8 @@ interface PartDao {
     fun insert(Part: Part)
     @Update
     fun update(Part: Part)
+    @Upsert
+    suspend fun upsert(part: Part)
 
     @Delete
     fun delete(Part: Part)
@@ -55,4 +57,7 @@ interface PartDao {
     fun insertPartAttachment(partAttachment: PartAttachment)
     @Query("SELECT * FROM PartAttachment WHERE part_id = :partId")
     fun loadAllPartAttachmentByPartId(partId: Int): Flow<List<PartAttachment>>
+    //Sync
+    @Query("SELECT * FROM PartTask WHERE modified_on >= :startDate")
+    suspend fun loadPastTaskToSync(startDate: String?): List<PartTask>
 }

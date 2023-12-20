@@ -81,6 +81,15 @@ data class PartTestItem(
     @ColumnInfo(name = "modified_on") var modifiedOn: LocalDateTime = LocalDateTime.now(),
 )
 
+@Entity(tableName = "PartTestItemAttachment",primaryKeys = ["file_id"])
+data class PartTestItemAttachment(
+    @ColumnInfo(name = "test_item_id") val testItemId: Int,
+    @ColumnInfo(name = "part_id") val partId: Int,
+    @ColumnInfo(name = "file_id") val fileId: UUID = UUID.randomUUID(),
+    @ColumnInfo(name = "path") val path: String,
+    @ColumnInfo(name = "modified_on") val modifiedOn: LocalDateTime = LocalDateTime.now(),
+)
+
 
 /*data class PartTestWithItems(
     @Embedded val partTest: PartTest,

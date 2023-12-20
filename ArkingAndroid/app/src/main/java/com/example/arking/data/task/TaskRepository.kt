@@ -12,6 +12,7 @@ class TaskRepository @Inject constructor(
         taskDao.insertTaskAttachment(taskAttachment)
     }
     fun getAllPartAttachmentByTaskId(partId: Int,taskId: Int) = taskDao.getAllAttachmentByTaskId(partId,taskId)
+    suspend fun loadPartAttachmentToSync(startDate: String) = taskDao.loadPartAttachmentToSync(startDate)
     companion object {
 
         // For Singleton instantiation

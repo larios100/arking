@@ -8,6 +8,9 @@ import javax.inject.Singleton
 class PrototypeRepository @Inject constructor(
     private val prototypeDao: PrototypeDao
 ) {
+    suspend fun upsertPrototype(prototype: Prototype){
+        prototypeDao.upsert(prototype)
+    }
     suspend fun createContract(prototype: Prototype) {
         var registered = prototypeDao.loadAllById(prototype.id)
         if(registered == null){

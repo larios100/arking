@@ -14,6 +14,12 @@ import javax.inject.Singleton
 class PartRepository @Inject constructor(
     private val partDao: PartDao
 ) {
+    suspend fun upsertPart(part: Part){
+        partDao.upsert(part)
+    }
+    suspend fun upsertPartTask(part: PartTask){
+        partDao.upsertPartTask(part)
+    }
     suspend fun createPart(part: Part) {
         var registered = partDao.loadAllById(part.id)
         if(registered == null){
@@ -45,6 +51,8 @@ class PartRepository @Inject constructor(
     suspend fun createPartAttachment(partAttachment: PartAttachment) {
         partDao.insertPartAttachment(partAttachment)
     }
+    //Sync
+    suspend fun loadPastTaskToSync(startDate: String?) = partDao.loadPastTaskToSync(startDate)
 
     companion object {
 

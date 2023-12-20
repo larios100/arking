@@ -9,6 +9,7 @@ import androidx.room.Upsert
 import com.example.arking.model.PartTest
 import com.example.arking.model.PartTestAttachment
 import com.example.arking.model.PartTestItem
+import com.example.arking.model.PartTestItemAttachment
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -21,8 +22,6 @@ interface TestDao {
     fun deleteTestAttachment(partTestAttachment: PartTestAttachment)
     @Query("SELECT * FROM PartTest WHERE part_id=:partId AND test_id=:testId")
     fun loadTestByPartIdAndTestIdFlow(partId: Int,testId: Int): Flow<PartTest>
-    /*@Query("SELECT * FROM PartTest WHERE part_id=:partId AND test_id=:testId")
-    fun loadTestWithItemsByPartIdAndTestIdFlow(partId: Int,testId: Int): Flow<PartTestWithItems>*/
     @Query(
         "SELECT * FROM PartTest " +
                 "LEFT JOIN PartTestItem ON PartTest.id = PartTestItem.test_id WHERE PartTest.part_id=:partId AND PartTest.test_id=:testId"
@@ -47,4 +46,13 @@ interface TestDao {
     fun updatePartTestItem(partTestItem: PartTestItem)
     @Upsert
     suspend fun upsertPartTestItem(partTestItem: PartTestItem)
+    @Insert
+    suspend fun insertPartTestItemAttachment(partTestItemAttachment: PartTestItemAttachment)
+    @Query("SELECT * FROM PartTestItemAttachment WHERE part_id=:partId AND test_item_id=:testItemId")
+    fun getAllPartTestItemAttachmentByTestItemId(partId: Int,testItemId: Int): Flow<List<PartTestItemAttachment>>
+    //Sync
+    @Query("SELECT * FROM PartTest WHERE modified_on >= :startDate")
+    suspend fun loadPartTestToSync(startDate: String): List<PartTest>
+    @Query("SELECT * FROM PartTestItem WHERE modified_on >= :startDate")
+    suspend fun loadPartTestItemToSync(startDate: String): List<PartTestItem>
 }

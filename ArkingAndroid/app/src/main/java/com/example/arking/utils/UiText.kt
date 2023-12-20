@@ -1,4 +1,4 @@
-package com.example.arking.feature_otis.domain.utils
+package com.example.arking.utils
 
 import android.content.Context
 import androidx.annotation.StringRes

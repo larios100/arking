@@ -16,4 +16,6 @@ interface TaskDao {
     fun insertTaskAttachment(taskAttachment: TaskAttachment)
     @Delete
     fun deleteTaskAttachment(taskAttachment: TaskAttachment)
+    @Query("SELECT * FROM TaskAttachment WHERE modified_on >= :startDate")
+    suspend fun loadPartAttachmentToSync(startDate: String): List<TaskAttachment>
 }

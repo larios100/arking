@@ -3,9 +3,9 @@ package com.example.arking.feature_otis.domain.uses_cases
 import com.example.arking.R
 import com.example.arking.feature_otis.domain.model.OtiConcepts
 import com.example.arking.feature_otis.domain.repository.OtiRepository
-import com.example.arking.feature_otis.domain.utils.Resource
-import com.example.arking.feature_otis.domain.utils.UiText
 import com.example.arking.feature_otis.util.TotalOtiHelper
+import com.example.arking.utils.Resource
+import com.example.arking.utils.UiText
 
 class AddOtiConcept(
     private val otiRepository: OtiRepository

@@ -70,6 +70,7 @@ fun Signature(
             ) {
                 Text(stringResource(id = R.string.cancel))
             }
+            Spacer(modifier = Modifier.width(16.dp))
             Button(
                 onClick = {
                     val signatureBitmap = signaturePad.signatureBitmap

@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import androidx.room.Upsert
 import com.example.arking.model.Prototype
 import kotlinx.coroutines.flow.Flow
 
@@ -29,6 +30,8 @@ interface PrototypeDao {
     fun insert(Prototype: Prototype)
     @Update
     fun upadate(Prototype: Prototype)
+    @Upsert
+    suspend fun upsert(prototype: Prototype)
 
     @Delete
     fun delete(Prototype: Prototype)

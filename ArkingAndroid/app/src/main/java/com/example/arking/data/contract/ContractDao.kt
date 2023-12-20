@@ -6,6 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import androidx.room.Upsert
 import com.example.arking.model.Contract
 import kotlinx.coroutines.flow.Flow
 
@@ -32,6 +33,8 @@ interface ContractDao {
     fun insert(contract: Contract)
     @Update
     fun upadate(contract: Contract)
+    @Upsert
+    suspend fun upsert(contract: Contract)
 
     @Delete
     fun delete(contract: Contract)

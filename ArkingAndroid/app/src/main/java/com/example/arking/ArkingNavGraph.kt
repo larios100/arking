@@ -1,19 +1,14 @@
 package com.example.arking
 
 import android.content.Context
-import android.net.Uri
-import androidx.camera.core.ImageCaptureException
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -22,31 +17,28 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import com.example.arking.feature_login.presentation.login.LoginScreen
 import com.example.arking.feature_otis.presentation.add_edit_oti.AddEditOtiScreen
 import com.example.arking.feature_otis.presentation.otis.OtisScreen
-import com.example.arking.ui.camera.CameraScreen
+import com.example.arking.feature_settings.presentation.settings.SettingsScreen
 import com.example.arking.ui.camera.CameraScreen2
 import com.example.arking.ui.camera.CameraTaskScreen
+import com.example.arking.ui.camera.CameraTestItemScreen
 import com.example.arking.ui.camera.CameraTestScreen
 import com.example.arking.ui.contracts.ContractsScreen
-import com.example.arking.ui.contracts.TaskScreen
 import com.example.arking.ui.part.PartScreen
 import com.example.arking.ui.part.PartTaskScreen
 import com.example.arking.ui.part.PartsScreen
 import com.example.arking.ui.prototypes.PrototypesScreen
-import com.example.arking.ui.settings.SettingsScreen
 import com.example.arking.ui.signature.SignatureScreen
+import com.example.arking.ui.test.TestItemScreen
 import com.example.arking.ui.test.TestScreen
 import java.io.File
 import java.lang.Integer.parseInt
-import java.util.concurrent.Executor
 
 @Composable
 fun ArkingNavGraph(navController: NavHostController,
                    outputDirectory: File,
-                   executor: Executor,
-                   onImageCaptured: (Uri) -> Unit,
-                   onError: (ImageCaptureException) -> Unit,
                    applicationContext: Context
 ) {
     NavHost(navController, startDestination = "home") {
@@ -69,11 +61,14 @@ fun ArkingNavGraph(navController: NavHostController,
                 PartScreen(navController)
             }
         }
+        composable(com.example.arking.feature_login.utils.Screen.LoginScreen.route){
+            LoginScreen()
+        }
         composable(Prototypes.route) {
             PrototypesScreen()
         }
         composable(Settings.route) {
-            SettingsScreen(navController)
+            SettingsScreen()
         }
         composable(Signature.route) {
             SignatureScreen()
@@ -94,6 +89,16 @@ fun ArkingNavGraph(navController: NavHostController,
                 outputDirectory,
                 parseInt(backStackEntry.arguments?.getString("partId")),
                 parseInt(backStackEntry.arguments?.getString("taskId")),navController)
+        }
+        composable("camera_test_item/{partId}/{testItemId}",
+            arguments = listOf(
+                navArgument("partId") { type = NavType.StringType },
+                navArgument("testItemId") { type = NavType.StringType }),
+        ) { backStackEntry ->
+            CameraTestItemScreen(applicationContext = applicationContext,
+                outputDirectory,
+                parseInt(backStackEntry.arguments?.getString("partId")),
+                parseInt(backStackEntry.arguments?.getString("testItemId")),navController)
         }
         composable("part_task/{partId}/{taskId}",
             arguments = listOf(
@@ -122,6 +127,44 @@ fun ArkingNavGraph(navController: NavHostController,
                 outputDirectory,
                 parseInt(backStackEntry.arguments?.getString("partId")),
                 parseInt(backStackEntry.arguments?.getString("testId")),navController)
+        }
+        composable("camera_test_item/{partId}/{testItemId}",
+            arguments = listOf(
+                navArgument(
+                    name = "partId"
+                ) {
+                    type = NavType.StringType
+                    defaultValue = ""
+                },
+                navArgument(
+                    name = "testItemId"
+                ) {
+                    type = NavType.StringType
+                    defaultValue = ""
+                }
+            )){backStackEntry ->
+            CameraTestItemScreen(applicationContext = applicationContext,
+                outputDirectory,
+                parseInt(backStackEntry.arguments?.getString("partId")),
+                parseInt(backStackEntry.arguments?.getString("testItemId")),
+                navController)
+        }
+        composable("test_item/{partId}/{testItemId}",
+            arguments = listOf(
+                navArgument(
+                    name = "partId"
+                ) {
+                    type = NavType.StringType
+                    defaultValue = ""
+                },
+                navArgument(
+                    name = "testItemId"
+                ) {
+                    type = NavType.StringType
+                    defaultValue = ""
+                }
+            )){
+            TestItemScreen(navController)
         }
         composable(com.example.arking.feature_otis.util.Screen.OtisScreen.route){
             OtisScreen(navController = navController)

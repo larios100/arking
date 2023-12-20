@@ -8,6 +8,7 @@ import com.example.arking.data.test.TestDao
 import com.example.arking.model.PartAttachment
 import com.example.arking.model.PartTask
 import com.example.arking.model.PartTestAttachment
+import com.example.arking.model.PartTestItemAttachment
 import com.example.arking.model.TaskAttachment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -34,6 +35,11 @@ class CameraViewModel  @Inject constructor (
     fun insertTestAttachment(testAttachment: PartTestAttachment){
         CoroutineScope(Dispatchers.IO).launch {
             testDao.insertTestAttachment(testAttachment)
+        }
+    }
+    fun insertTestItemAttachment(testItemAttachment: PartTestItemAttachment){
+        CoroutineScope(Dispatchers.IO).launch {
+            testDao.insertPartTestItemAttachment(testItemAttachment)
         }
     }
 }

@@ -19,9 +19,6 @@ import java.util.concurrent.Executors
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private lateinit var outputDirectory: File
-    private lateinit var cameraExecutor: ExecutorService
-
-    private lateinit var photoUri: Uri
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
@@ -36,19 +33,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             ReplyTheme {
 
-                ArkingApp(outputDirectory,cameraExecutor,onImageCaptured = ::handleImageCapture,
-                    onError = { Log.e("kilo", "View error:", it) }, applicationContext = this
+                ArkingApp(this,outputDirectory, applicationContext = this
                 )
             }
         }
         requestCameraPermission()
         outputDirectory = getOutputDirectory()
-        cameraExecutor = Executors.newSingleThreadExecutor()
-    }
-    private fun handleImageCapture(uri: Uri) {
-        Log.i("kilo", "Image captured: $uri")
-        photoUri = uri
-
     }
     private fun requestCameraPermission() {
         when {
@@ -78,6 +68,5 @@ class MainActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        cameraExecutor.shutdown()
     }
 }

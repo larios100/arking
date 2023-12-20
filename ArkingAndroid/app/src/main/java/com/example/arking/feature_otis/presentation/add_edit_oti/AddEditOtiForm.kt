@@ -74,6 +74,7 @@ fun AddEditOtiForm(
                     Text(text = stringResource(id = R.string.concept), modifier = Modifier.weight(0.3f))
                     Column(modifier = Modifier.weight(0.7f)) {
                         TextField(value = state.concept,
+                            singleLine = true,
                             onValueChange = {
                                 onEvent(AddEditOtiEvent.SetConcept(it))
                             },
@@ -97,6 +98,7 @@ fun AddEditOtiForm(
                     Text(text = stringResource(id = R.string.unit), modifier = Modifier.weight(0.3f))
                     Column(modifier = Modifier.weight(0.7f)) {
                         TextField(value = state.unit,
+                            singleLine = true,
                             onValueChange = {onEvent(AddEditOtiEvent.SetUnit(it))},
                             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                             keyboardActions = KeyboardActions(
@@ -120,6 +122,7 @@ fun AddEditOtiForm(
                         Text(text = stringResource(id = R.string.quantity), modifier = Modifier.weight(0.3f))
                         TextField(value = "${state.quantity}",
                             onValueChange = {onEvent(AddEditOtiEvent.SetQuantity(it))},
+                            singleLine = true,
                             keyboardActions = KeyboardActions(
                                 onNext = { focusUnitPrice.requestFocus() }
                             ),
@@ -150,6 +153,7 @@ fun AddEditOtiForm(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(text = stringResource(id = R.string.quantity), modifier = Modifier.weight(0.3f))
                         TextField(value = "${state.quantity}",
+                            singleLine = true,
                             onValueChange = {onEvent(AddEditOtiEvent.SetQuantity(it))},
                             keyboardActions = KeyboardActions(
                                 onDone = { focusManager.clearFocus() },

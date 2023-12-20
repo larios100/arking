@@ -1,31 +1,24 @@
 package com.example.arking.feature_otis.presentation.add_edit_oti
 
-import android.util.Log
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.arking.R
 import com.example.arking.feature_otis.domain.model.Oti
 import com.example.arking.feature_otis.domain.model.OtiConcepts
 import com.example.arking.feature_otis.domain.uses_cases.OtisUseCases
 import com.example.arking.feature_otis.domain.utils.ConceptType
-import com.example.arking.feature_otis.domain.utils.Resource
 import com.example.arking.feature_otis.domain.utils.SignType
-import com.example.arking.feature_otis.domain.utils.UiText
+import com.example.arking.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.lang.Double.parseDouble
-import java.lang.Integer.parseInt
 import java.util.UUID
 import javax.inject.Inject
 @HiltViewModel

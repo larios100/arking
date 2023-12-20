@@ -53,6 +53,7 @@ import com.example.arking.model.TaskRoot
 import com.example.arking.model.Test
 import com.example.arking.presentation.parts.PartEvent
 import com.example.arking.presentation.parts.PartViewModel
+import com.example.arking.ui.components.ListItem
 import com.example.arking.ui.components.PartGallery
 import com.example.arking.utils.ReadJSONFromAssets
 import com.google.gson.Gson
@@ -74,22 +75,22 @@ fun PartScreen(
                 TopAppBar(
                     colors = TopAppBarDefaults.mediumTopAppBarColors(
                         containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        titleContentColor = MaterialTheme.colorScheme.primary,
+                        titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     ),
                     title = {
                         Text(state.part!!.name)
                     },
                     navigationIcon = {
                         IconButton(onClick = { navController.navigateUp() }) {
-                            Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = MaterialTheme.colorScheme.primary)
+                            Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = MaterialTheme.colorScheme.onPrimaryContainer)
                         }
                     },
                     actions = {
                         IconButton(onClick = { navController.navigate("camera/" + state.part!!.id) }) {
-                            Icon(imageVector = Icons.Rounded.AddAPhoto, contentDescription = "Take photo", tint = MaterialTheme.colorScheme.primary)
+                            Icon(imageVector = Icons.Rounded.AddAPhoto, contentDescription = "Take photo", tint = MaterialTheme.colorScheme.onPrimaryContainer)
                         }
                         IconButton(onClick = { onEvent(PartEvent.ToggleGallery) }) {
-                            Icon(imageVector = Icons.Rounded.PhotoAlbum, contentDescription = "Ver fotos", tint = MaterialTheme.colorScheme.primary)
+                            Icon(imageVector = Icons.Rounded.PhotoAlbum, contentDescription = "Ver fotos", tint = MaterialTheme.colorScheme.onPrimaryContainer)
                         }
                     }
                 )
@@ -143,9 +144,7 @@ fun PartContent(
                     }
                 }
             }
-        }
-        LazyColumn(){
-            items(selectedTaskHeaderId.tests){test ->
+            items(selectedTaskHeaderId.tests){ test ->
                 TestList(test = test){testSelected->
                     navController.navigate("part_test/" + part.id + "/" + testSelected.id)
                 }
@@ -229,23 +228,22 @@ private fun CategoryItem(
     expanded: Boolean,
     onTabClick: (TaskCategory) -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .padding(8.dp)
-            .border(2.dp, Color.LightGray, RoundedCornerShape(8.dp))
-            .padding(8.dp)
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End)
+    Column(Modifier
+        .padding(horizontal = 8.dp, vertical = 8.dp)){
+        ListItem(
         ) {
-            Text(text = category.name, modifier = Modifier.weight(1f))
-            val icon = if (expanded) Icons.Default.ArrowDropUp else Icons.Default.ArrowDropDown
-            IconButton(onClick = {
-                onTabClick(category)
-            }) {
-                Icon(imageVector = icon, contentDescription = null)
+            Row(
+                modifier = Modifier.padding(horizontal = 8.dp).fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End)
+            ) {
+                Text(text = category.name, modifier = Modifier.weight(1f))
+                val icon = if (expanded) Icons.Default.ArrowDropUp else Icons.Default.ArrowDropDown
+                IconButton(onClick = {
+                    onTabClick(category)
+                }) {
+                    Icon(imageVector = icon, contentDescription = null)
+                }
             }
         }
     }

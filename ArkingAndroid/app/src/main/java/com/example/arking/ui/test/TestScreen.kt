@@ -3,18 +3,17 @@ package com.example.arking.ui.test
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.rounded.AddAPhoto
@@ -22,8 +21,6 @@ import androidx.compose.material.icons.rounded.PhotoAlbum
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,7 +30,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -43,7 +39,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,18 +47,17 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.arking.R
+import com.example.arking.feature_otis.domain.utils.SignType
 import com.example.arking.model.PartTestItem
 import com.example.arking.model.TestWithDataItem
 import com.example.arking.presentation.tests.TestEvent
 import com.example.arking.presentation.tests.TestState
 import com.example.arking.presentation.tests.TestViewModel
+import com.example.arking.ui.components.ImageFromPath
 import com.example.arking.ui.components.MyDatePickerDialog
 import com.example.arking.ui.components.PartGallery
 import com.example.arking.ui.components.Textarea
 import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 
@@ -97,22 +91,22 @@ fun TestScreen(
             TopAppBar(
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                 ),
                 title = {
                     Text(viewModel.test.name)
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
-                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = MaterialTheme.colorScheme.primary)
+                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = MaterialTheme.colorScheme.onPrimaryContainer)
                     }
                 },
                 actions = {
                     IconButton(onClick = { navController.navigate("camera_test/"+ partId + "/" + viewModel.test.id) }) {
-                        Icon(imageVector = Icons.Rounded.AddAPhoto, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                        Icon(imageVector = Icons.Rounded.AddAPhoto, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimaryContainer)
                     }
                     IconButton(onClick = { onEvent(TestEvent.ToggleGallery) }) {
-                        Icon(imageVector = Icons.Rounded.PhotoAlbum, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                        Icon(imageVector = Icons.Rounded.PhotoAlbum, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimaryContainer)
                     }
                 }
             )
@@ -123,7 +117,14 @@ fun TestScreen(
                 PartGallery(state.photos)
             }
             else{
-                TestContent(state, onEvent= onEvent)
+                if(state.isSinging){
+                    SignTestForm(onEvent = onEvent)
+                }
+                TestContent(state, onEvent= onEvent, onTakePhotoItem = {
+                    navController.navigate("camera_test_item/$partId/$it")
+                },onGalleryItem = {
+                    navController.navigate("test_item/$partId/$it")
+                })
             }
         }
     }
@@ -133,7 +134,9 @@ fun TestScreen(
 @Composable
 fun TestContent(
     testState: TestState,
-    onEvent: (TestEvent) -> Unit
+    onEvent: (TestEvent) -> Unit,
+    onTakePhotoItem: (Int) -> Unit,
+    onGalleryItem: (Int) -> Unit
 ){
     var updatedItems by remember { mutableStateOf(ArrayList<TestWithDataItem>()) }
     Column(modifier = Modifier,
@@ -150,7 +153,9 @@ fun TestContent(
                         updatedItems[index] = updatedItem
                     }
                     Log.i("onItemChanged", updatedItems.toString())
-                })
+                },
+                onTakePhotoItem,
+                    onGalleryItem)
             }
             item {
                 Column(
@@ -169,21 +174,44 @@ fun TestContent(
                         }
                     }
                 }
-                Column(verticalArrangement = Arrangement.Center) {
-                    Button(onClick = {
-                        onEvent(TestEvent.save(updatedItems))
-                    }) {
-                        Text(text = stringResource(id = R.string.save))
+                Column {
+
+                    Row(modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center) {
+                        if(testState.signResident != null){
+                            ImageFromPath(
+                                filePath = testState.signResident,
+                                modifier = Modifier
+                                    .width(300.dp)
+                                    .height(300.dp)
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.width(16.dp))
+                        if(testState.signAuditor != null){
+                            ImageFromPath(
+                                filePath = testState.signAuditor,
+                                modifier = Modifier
+                                    .width(300.dp)
+                                    .height(300.dp)
+                            )
+                        }
                     }
-                    Button(onClick = {
-                        onEvent(TestEvent.save(updatedItems))
-                    }) {
-                        Text(text = stringResource(id = R.string.save))
-                    }
-                    Button(onClick = {
-                        onEvent(TestEvent.save(updatedItems))
-                    }) {
-                        Text(text = stringResource(id = R.string.save))
+                    Row(modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center) {
+                        Button(onClick = { onEvent(TestEvent.SingTest(SignType.Resident)) }) {
+                            Text(text = stringResource(id = R.string.sign_resident))
+                        }
+                        Spacer(modifier = Modifier.width(16.dp))
+                        Button(onClick = { onEvent(TestEvent.SingTest(SignType.Lega)) }) {
+                            Text(text = stringResource(id = R.string.sign_lega))
+                        }
+                        Spacer(modifier = Modifier.width(16.dp))
+                        Button(onClick = {
+                            onEvent(TestEvent.Save(updatedItems))
+                        }) {
+                            Text(text = stringResource(id = R.string.save))
+                        }
                     }
                 }
             }
@@ -194,7 +222,9 @@ fun TestContent(
 @Composable
 private fun TestItem(
     item: TestWithDataItem,
-    onItemChanged: (TestWithDataItem) -> Unit
+    onItemChanged: (TestWithDataItem) -> Unit,
+    onTakePhotoItem: (Int) -> Unit,
+    onGalleryItem: (Int) -> Unit
 ) {
     var fixDate by remember { mutableStateOf(item.fixDate) }
     var testDate by remember { mutableStateOf(item.testDate) }
@@ -202,9 +232,8 @@ private fun TestItem(
     var validation by remember { mutableStateOf(item.validation) }
     Card(
         modifier = Modifier
-            .background(Color.White)
             .padding(0.dp, 8.dp),
-        border = BorderStroke(1.dp, Color.LightGray)
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
     ) {
         var showDatePicker by remember {
             mutableStateOf(false)
@@ -221,8 +250,16 @@ private fun TestItem(
                     .weight(1f)
                     .fillMaxWidth()
             ) {
-                Text(item.name, Modifier, color = Color.Black, fontSize = 20.sp)
-                Text(item.description, Modifier, color = Color.Gray)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(item.name, Modifier, fontSize = 20.sp)
+                    IconButton(onClick = { onTakePhotoItem(item.id) }) {
+                        Icon(imageVector = Icons.Rounded.AddAPhoto, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimaryContainer)
+                    }
+                    IconButton(onClick = { onGalleryItem(item.id) }) {
+                        Icon(imageVector = Icons.Rounded.PhotoAlbum, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimaryContainer)
+                    }
+                }
+                Text(item.description, Modifier)
             }
         }
         Row(

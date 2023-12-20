@@ -1,7 +1,9 @@
 package com.example.arking.data.test
 
 import com.example.arking.model.PartTest
+import com.example.arking.model.PartTestAttachment
 import com.example.arking.model.PartTestItem
+import com.example.arking.model.PartTestItemAttachment
 import java.time.LocalDateTime
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -10,24 +12,12 @@ import javax.inject.Singleton
 class TestRepository @Inject constructor(
     private val testDao: TestDao
 ) {
-    fun loadTestByPartIdAndTestId(partId: Int,testId: Int) = testDao.loadTestByPartIdAndTestIdFlow(partId,testId)
-    suspend fun createPartTestItem(partTestItem: PartTestItem) {
-        var registered = testDao.loadTestItemByPartIdAndTestItemId(partTestItem.partId,partTestItem.testItemId)
-        if(registered == null){
-            testDao.insertPartTestItem(partTestItem)
-        }
-        else{
-            registered.testDate = partTestItem.testDate
-            registered.fixDate = partTestItem.fixDate
-            registered.result = partTestItem.result
-            registered.validation = partTestItem.validation
-            registered.modifiedOn = LocalDateTime.now()
-            //registered.s = part.status
-            testDao.updatePartTestItem(registered)
-        }
-    }
-    //fun getAllTestItemByPartId(partId: Int) = testDao.getAllTestItemByPartId(partId)
-    fun loadTestWithItemsByPartIdAndTestIdFlow(partId: Int,testId: Int) = testDao.loadTestWithItemsByPartIdAndTestIdFlow(partId,testId)
+    suspend fun loadPartTestToSync(startDate: String) = testDao.loadPartTestToSync(startDate)
+    suspend fun loadPartTestItemToSync(startDate: String) = testDao.loadPartTestItemToSync(startDate)
+    suspend fun upsertTestItem(partTestItem: PartTestItem) = testDao.upsertPartTestItem(partTestItem)
+    suspend fun upsertPartTest(partTest: PartTest) = testDao.upsertPartTest(partTest)
+    fun getAllPartTestItemAttachmentByTestItemId(partId: Int,testItemId: Int) = testDao.getAllPartTestItemAttachmentByTestItemId(partId,testItemId)
+    suspend fun insertPartTestItemAttachment(partTestItemAttachment: PartTestItemAttachment) = testDao.insertPartTestItemAttachment(partTestItemAttachment)
     companion object {
 
         // For Singleton instantiation
