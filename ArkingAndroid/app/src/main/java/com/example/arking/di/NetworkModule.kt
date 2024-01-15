@@ -14,6 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.security.SecureRandom
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLContext
@@ -59,6 +60,9 @@ object NetworkModule {
 
         // Configure OkHttpClient to trust all certificates
         val builder = okhttp3.OkHttpClient.Builder()
+            .connectTimeout(30, TimeUnit.SECONDS) // Tiempo máximo de espera para establecer la conexión
+            .readTimeout(10, TimeUnit.MINUTES) // Tiempo máximo de espera para leer datos
+            .writeTimeout(10, TimeUnit.MINUTES) // Tiempo máximo de espera para escribir datos
         builder.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
         builder.hostnameVerifier(HostnameVerifier { hostname: String?, session: SSLSession? -> true })
 

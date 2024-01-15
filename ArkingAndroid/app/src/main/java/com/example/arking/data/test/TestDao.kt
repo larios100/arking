@@ -55,4 +55,6 @@ interface TestDao {
     suspend fun loadPartTestToSync(startDate: String): List<PartTest>
     @Query("SELECT * FROM PartTestItem WHERE modified_on >= :startDate")
     suspend fun loadPartTestItemToSync(startDate: String): List<PartTestItem>
+    @Query("SELECT * FROM PartTestItemAttachment WHERE modified_on >= :startDate")
+    suspend fun loadPartTestItemAttachmentToSync(startDate: String): List<PartTestItemAttachment>
 }

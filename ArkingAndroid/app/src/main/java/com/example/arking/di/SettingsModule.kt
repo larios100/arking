@@ -5,6 +5,7 @@ import com.example.arking.data.part.PartRepository
 import com.example.arking.data.prototype.PrototypeRepository
 import com.example.arking.data.task.TaskRepository
 import com.example.arking.data.test.TestRepository
+import com.example.arking.feature_otis.domain.repository.OtiRepository
 import com.example.arking.feature_settings.domain.repository.SyncRepository
 import com.example.arking.feature_settings.domain.services.SyncApiService
 import com.example.arking.feature_settings.domain.uses_cases.SettingsUsesCases
@@ -34,8 +35,9 @@ object SettingsModule {
                              partRepository: PartRepository,
                              prototypeRepository: PrototypeRepository,
                              testRepository: TestRepository,
-                             taskRepository: TaskRepository
+                             taskRepository: TaskRepository,
+                             otiRepository: OtiRepository
     ): SettingsUsesCases {
-        return SettingsUsesCases(sync = Sync(syncRepository, contractRepository, partRepository, prototypeRepository,testRepository,taskRepository))
+        return SettingsUsesCases(sync = Sync(syncRepository, contractRepository, partRepository, prototypeRepository,testRepository,taskRepository,otiRepository))
     }
 }

@@ -13,4 +13,6 @@ interface OtiRepository {
     fun getOtiConceptsByOti(otiId: UUID): Flow<List<OtiConcepts>>
     suspend fun upsertOtiConcept(otiConcepts: OtiConcepts)
     suspend fun deleteOtiConcept(otiConcepts: OtiConcepts)
+    suspend fun getOtisToSync(startDate: String): List<Oti>
+    suspend fun getOtiConceptsByOtiIdSuspend(otiId: UUID): List<OtiConcepts>
 }

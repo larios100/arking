@@ -1,5 +1,7 @@
 package com.example.arking.feature_settings.domain.model
 
+import java.util.UUID
+
 
 data class SyncRequest(
     val parts: List<PartRequest>,
@@ -39,9 +41,9 @@ data class OtiRequest(
     val date: String,
     val startDate: String,
     val endDate: String,
-    val signAuditorId: String,
-    val signResidentId: String,
-    val total: Long,
+    val signAuditorId: String?,
+    val signResidentId: String?,
+    val total: Double,
     val concepts: List<ConceptRequest>,
 )
 
@@ -49,9 +51,10 @@ data class ConceptRequest(
     val id: String,
     val concept: String,
     val unit: String,
-    val unitPrice: Long,
-    val quantity: Long,
-    val total: Long,
-    val otiConceptType: Long,
+    val unitPrice: Double,
+    val quantity: Double,
+    val total: Double,
+    val otiConceptType: String,
+    val parentId: UUID?
 )
 

@@ -1,6 +1,5 @@
 package com.example.arking.feature_settings.domain.uses_cases
 
-import android.graphics.BitmapFactory
 import android.util.Log
 import com.example.arking.R
 import com.example.arking.data.contract.ContractRepository
@@ -8,7 +7,12 @@ import com.example.arking.data.part.PartRepository
 import com.example.arking.data.prototype.PrototypeRepository
 import com.example.arking.data.task.TaskRepository
 import com.example.arking.data.test.TestRepository
+import com.example.arking.feature_otis.domain.repository.OtiRepository
+import com.example.arking.feature_settings.domain.model.ConceptRequest
+import com.example.arking.feature_settings.domain.model.FileTaskAttachmentMetadataRequest
+import com.example.arking.feature_settings.domain.model.FileTestItemAttachmentMetadataRequest
 import com.example.arking.feature_settings.domain.model.ItemRequest
+import com.example.arking.feature_settings.domain.model.OtiRequest
 import com.example.arking.feature_settings.domain.model.PartRequest
 import com.example.arking.feature_settings.domain.model.SyncRequest
 import com.example.arking.feature_settings.domain.model.TakRequest
@@ -23,14 +27,11 @@ import com.example.arking.model.Prototype
 import com.example.arking.utils.Constants.ERROR_FORBIDDEN
 import com.example.arking.utils.Resource
 import com.example.arking.utils.UiText
-import okhttp3.MediaType
+import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
-import java.time.LocalDate
-import java.util.Date
 
 class Sync constructor(
     private val syncRepository: SyncRepository,
@@ -38,7 +39,8 @@ class Sync constructor(
     private val partRepository: PartRepository,
     private val prototypeRepository: PrototypeRepository,
     private val testRepository: TestRepository,
-    private val taskRepository: TaskRepository
+    private val taskRepository: TaskRepository,
+    private val otiRepository: OtiRepository
     ) {
     suspend operator fun invoke(startDate: String): Resource<Unit>{
         try {
@@ -87,8 +89,8 @@ class Sync constructor(
                             item.testItemId,
                             item.partId,
                             item.testId.toString(),
-                            item.testDate,
-                            item.fixDate,
+                            item.testDate ?: "",
+                            item.fixDate ?: "",
                             item.result,
                             item.validation
                         )
@@ -132,9 +134,28 @@ class Sync constructor(
             val path = photo.path.removePrefix("file://")
             Log.i("uploadAttach", photo.path)
             val file = File(path)
-            val requestFile = file.asRequestBody("image/jpg".toMediaTypeOrNull())
-            val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-            val response = syncRepository.uploadFile(photo.fileId.toString(),body)
+
+            val requestFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val fileBody = MultipartBody.Part.createFormData("file", file.name, requestFile)
+            val metadata = MultipartBody.Part.createFormData("metadata", Gson().toJson(FileTaskAttachmentMetadataRequest(photo.partId,photo.taskId)))
+            val fileType = MultipartBody.Part.createFormData("fileType", "task")
+            val response = syncRepository.uploadFile(photo.fileId.toString(),fileBody, metadata, fileType)
+            if(!response.isSuccessful)
+                return Resource.Error(UiText.StringResource(R.string.error_500))
+        }
+        val testAttach = testRepository.loadPartTestItemAttachmentToSync(startDate)
+        testAttach.forEach { photo ->
+            val path = photo.path.removePrefix("file://")
+            Log.i("uploadAttach", photo.path)
+            val file = File(path)
+
+            val requestFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val fileBody = MultipartBody.Part.createFormData("file", file.name, requestFile)
+            val metadata = MultipartBody.Part.createFormData("metadata", Gson().toJson(
+                FileTestItemAttachmentMetadataRequest(photo.partId,photo.testItemId)
+            ))
+            val fileType = MultipartBody.Part.createFormData("fileType", "TestItem")
+            val response = syncRepository.uploadFile(photo.fileId.toString(),fileBody, metadata, fileType)
             if(!response.isSuccessful)
                 return Resource.Error(UiText.StringResource(R.string.error_500))
         }
@@ -149,7 +170,7 @@ class Sync constructor(
         partIds.addAll(partTest.map { it.partId })
         partIds.addAll(partTestItem.map { it.partId })
         val partsToSync = ArrayList<PartRequest>()
-        partIds.distinct().forEach { id ->
+        partIds.distinct().filter { it > 0 }.forEach { id ->
             val tasksToSync = ArrayList<TakRequest>()
             val filterTasks = partTask.filter { it.partId == id }
             filterTasks.forEach { task ->
@@ -168,8 +189,8 @@ class Sync constructor(
                 ItemRequest(
                     item.testItemId,
                     "",
-                    if(item.testDate == "Abrir calendario") "" else item.testDate,
-                    if(item.fixDate == "Abrir calendario") "" else item.fixDate,
+                    if(item.testDate == "Abrir calendario") "" else ParseDateToSync(item.testDate),
+                    if(item.fixDate == "Abrir calendario") "" else ParseDateToSync(item.fixDate),
                     item.result,
                     item.validation
                 )
@@ -183,13 +204,57 @@ class Sync constructor(
                 )
             )
         }
+        val otisToSync = ArrayList<OtiRequest>()
+        val otis = otiRepository.getOtisToSync(startDate)
+        otis.forEach { oti ->
+            val concepts = otiRepository.getOtiConceptsByOtiIdSuspend(oti.id)
+            val tmpOti = OtiRequest(
+                oti.id.toString(),
+                oti.comments,
+                oti.description,
+                ParseDateToSync(oti.date),
+                ParseDateToSync(oti.startDate),
+                ParseDateToSync(oti.endDate),
+                null,
+                null,
+                oti.total,
+                concepts.map {
+                    item ->
+                    ConceptRequest(
+                        item.id.toString(),
+                        item.concept,
+                        item.unit,
+                        item.unitPrice,
+                        item.quantity,
+                        item.total,
+                        item.conceptType,
+                        item.parentConceptId
+                    )
+                }
+            )
+            otisToSync.add(tmpOti)
+        }
         val responseUpload = syncRepository.upload(SyncRequest(
             partsToSync,
-            emptyList()
+            otisToSync
         ))
         if(!responseUpload.isSuccessful){
             return Resource.Error(UiText.StringResource(R.string.error_500))
         }
         return  Resource.Success(null)
+    }
+    private fun ParseDateToSync(date: String): String
+    {
+        if(date.isNullOrEmpty())
+            return ""
+        return try{
+            val arr = date.split("/")
+            Log.i("ParseDateToSync", arr.toString())
+            arr[2] + "/" + arr[1] + "/" + arr[0]
+        } catch (ex: Exception){
+            Log.e("ParseDateToSync", ex.toString())
+            ""
+        }
+
     }
 }

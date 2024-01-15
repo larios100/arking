@@ -45,8 +45,8 @@ data class PartTestItemResponse(
     val partId: Int,
     val testId: Int,
     val attachments: String,
-    val testDate: String,
-    val fixDate: String,
+    val testDate: String?,
+    val fixDate: String?,
     val result: String,
     val validation: Boolean,
 )

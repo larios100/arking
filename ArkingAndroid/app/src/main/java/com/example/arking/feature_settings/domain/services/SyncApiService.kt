@@ -19,5 +19,5 @@ interface SyncApiService {
     suspend fun download(@Query("startDate") startDate: String?): Response<SyncResponse>
     @Multipart
     @POST("file/{fileId}")
-    suspend fun createFile(@Path("fileId")fileId: String, @Part file:MultipartBody.Part): Response<Unit>
+    suspend fun createFile(@Path("fileId") fileId: String, @Part file: MultipartBody.Part, @Part metadata: MultipartBody.Part, @Part fileType: MultipartBody.Part): Response<Unit>
 }

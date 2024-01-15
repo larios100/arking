@@ -22,7 +22,7 @@ import com.example.arking.model.PartTestItemAttachment
 import com.example.arking.model.TaskAttachment
 
 // Define las entidades que deseas incluir en la base de datos
-@Database(entities = [Contract::class,Part::class, Prototype::class, PartTask::class, PartAttachment::class, TaskAttachment::class, PartTest::class, PartTestItem::class, PartTestAttachment::class, PartTestItemAttachment::class], version = 2)
+@Database(entities = [Contract::class,Part::class, Prototype::class, PartTask::class, PartAttachment::class, TaskAttachment::class, PartTest::class, PartTestItem::class, PartTestAttachment::class, PartTestItemAttachment::class], version = 3)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 

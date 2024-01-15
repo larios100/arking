@@ -37,4 +37,12 @@ class OtiRepositoryImpl(
     override suspend fun deleteOtiConcept(otiConcepts: OtiConcepts) {
         dao.deleteOtiConcept(otiConcepts)
     }
+
+    override suspend fun getOtisToSync(startDate: String): List<Oti>{
+        return dao.getOtisToSync(startDate)
+    }
+
+    override suspend fun getOtiConceptsByOtiIdSuspend(otiId: UUID): List<OtiConcepts>{
+        return dao.getOtiConceptsByOtiIdSuspend(otiId)
+    }
 }

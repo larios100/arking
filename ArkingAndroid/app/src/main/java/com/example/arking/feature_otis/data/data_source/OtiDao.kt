@@ -27,4 +27,9 @@ interface OtiDao {
     suspend fun upsertOtiConcept(otiConcepts: OtiConcepts)
     @Delete
     suspend fun deleteOtiConcept(otiConcepts: OtiConcepts)
+    @Query("SELECT * FROM OTI WHERE modified_on>= :startDate")
+    suspend fun getOtisToSync(startDate: String): List<Oti>
+    @Query("SELECT * FROM OtiConcepts WHERE oti_id=:otiId")
+    suspend fun getOtiConceptsByOtiIdSuspend(otiId: UUID): List<OtiConcepts>
+
 }

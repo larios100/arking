@@ -15,7 +15,7 @@ class SyncRepository constructor(private val syncApiService: SyncApiService) {
         return syncApiService.upload(syncRequest)
     }
 
-    suspend fun uploadFile(fileId: String,file: MultipartBody.Part): Response<Unit>{
-        return  syncApiService.createFile(fileId,file)
+    suspend fun uploadFile(fileId: String, file: MultipartBody.Part,metadata: MultipartBody.Part,fileType: MultipartBody.Part): Response<Unit>{
+        return  syncApiService.createFile(fileId,file, metadata, fileType)
     }
 }

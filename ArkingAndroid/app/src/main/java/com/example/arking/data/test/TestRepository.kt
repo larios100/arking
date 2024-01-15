@@ -14,6 +14,7 @@ class TestRepository @Inject constructor(
 ) {
     suspend fun loadPartTestToSync(startDate: String) = testDao.loadPartTestToSync(startDate)
     suspend fun loadPartTestItemToSync(startDate: String) = testDao.loadPartTestItemToSync(startDate)
+    suspend fun loadPartTestItemAttachmentToSync(startDate: String) = testDao.loadPartTestItemAttachmentToSync(startDate)
     suspend fun upsertTestItem(partTestItem: PartTestItem) = testDao.upsertPartTestItem(partTestItem)
     suspend fun upsertPartTest(partTest: PartTest) = testDao.upsertPartTest(partTest)
     fun getAllPartTestItemAttachmentByTestItemId(partId: Int,testItemId: Int) = testDao.getAllPartTestItemAttachmentByTestItemId(partId,testItemId)
