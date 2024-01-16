@@ -19,5 +19,6 @@ export interface Item {
   unitPrice: number;
   quantity: number;
   otiConceptType: string;
+  total: number;
   childs: Item[];
 }
