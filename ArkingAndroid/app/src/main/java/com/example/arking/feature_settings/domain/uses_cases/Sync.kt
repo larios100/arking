@@ -31,7 +31,9 @@ import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Response
 import java.io.File
+import java.util.UUID
 
 class Sync constructor(
     private val syncRepository: SyncRepository,
@@ -208,6 +210,18 @@ class Sync constructor(
         val otis = otiRepository.getOtisToSync(startDate)
         otis.forEach { oti ->
             val concepts = otiRepository.getOtiConceptsByOtiIdSuspend(oti.id)
+            var singAuditorId: String? = null
+            var singResidentId: String? = null
+            if(!oti.signResident.isNullOrEmpty()){
+                val responseResident = SendSingFile(oti.signResident!!)
+                if(!responseResident.data.isNullOrEmpty())
+                    singResidentId = responseResident.data
+            }
+            if(!oti.signAuditor.isNullOrEmpty()){
+                val responseResident = SendSingFile(oti.signAuditor!!)
+                if(!responseResident.data.isNullOrEmpty())
+                    singAuditorId = responseResident.data
+            }
             val tmpOti = OtiRequest(
                 oti.id.toString(),
                 oti.comments,
@@ -215,8 +229,8 @@ class Sync constructor(
                 ParseDateToSync(oti.date),
                 ParseDateToSync(oti.startDate),
                 ParseDateToSync(oti.endDate),
-                null,
-                null,
+                singAuditorId,
+                singResidentId,
                 oti.total,
                 concepts.map {
                     item ->
@@ -242,6 +256,18 @@ class Sync constructor(
             return Resource.Error(UiText.StringResource(R.string.error_500))
         }
         return  Resource.Success(null)
+    }
+    private suspend fun SendSingFile(path: String):Resource<String>{
+        val path = path.removePrefix("file://")
+        Log.i("uploadAttach",path)
+        val fileId = UUID.randomUUID().toString()
+        val file = File(path)
+        val requestFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+        val fileBody = MultipartBody.Part.createFormData("file", file.name, requestFile)
+        val response = syncRepository.uploadFile(fileId,fileBody)
+        if(!response.isSuccessful)
+            return Resource.Error(UiText.StringResource(R.string.error_500))
+        return Resource.Success<String>(fileId)
     }
     private fun ParseDateToSync(date: String): String
     {

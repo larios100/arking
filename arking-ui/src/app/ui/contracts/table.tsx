@@ -79,7 +79,7 @@ export default async function ContractsTable({
               <td className="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
                   href={"/admin/contracts/" + contract.id + "/edit"}
-                  className="text-indigo-600 hover:text-indigo-900"
+                  className="text-indigo-600 hover:text-indigo-900 mr-2"
                 >
                   Editar
                 </Link>

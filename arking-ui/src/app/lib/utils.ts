@@ -1,5 +1,5 @@
 export const formatCurrency = (amount: number) => {
-  return (amount / 100).toLocaleString("es-MX", {
+  return amount.toLocaleString("es-MX", {
     style: "currency",
     currency: "MXN",
   });
@@ -9,7 +9,8 @@ export const formatDateToLocal = (
   dateStr: string | null,
   locale: string = "es-MX"
 ) => {
-  if (dateStr === null) return "";
+  if (dateStr === null || dateStr === "" || !dateStr) return "";
+  console.log("dateStr", dateStr);
   const date = new Date(dateStr);
   const options: Intl.DateTimeFormatOptions = {
     day: "numeric",

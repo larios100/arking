@@ -1,5 +1,6 @@
 package com.example.arking.feature_settings.presentation.settings
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -32,10 +33,15 @@ fun SettingsScreen(
     val state = viewModel.state.value
     val onEvent = viewModel::onEvent
     val context = LocalContext.current
+    val stringSucesss = stringResource(R.string.save_succes)
     LaunchedEffect(key1 = context) {
         viewModel.events.collect { event ->
             if(event == UiEvent.SyncSuccess){
-
+                Toast.makeText(
+                    context,
+                    stringSucesss,
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }

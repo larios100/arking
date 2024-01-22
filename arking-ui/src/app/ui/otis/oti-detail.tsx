@@ -1,5 +1,7 @@
 import { fetchOti } from "@/app/lib/data-otis";
+import { formatCurrency, formatDateToLocal } from "@/app/lib/utils";
 import { Item } from "@/app/models/oti-detail";
+import Image from "next/image";
 import { Fragment } from "react";
 
 export default async function OtiDetail({ id }: { id: string }) {
@@ -22,7 +24,7 @@ export default async function OtiDetail({ id }: { id: string }) {
         </div>
         <div className="w-full md:w-1/2 text-right">
           <p className="block text-sm font-medium text-gray-700 dark:text-gray-400">
-            {oti.date}
+            {formatDateToLocal(oti.date)}
           </p>
         </div>
       </div>
@@ -42,7 +44,7 @@ export default async function OtiDetail({ id }: { id: string }) {
         </div>
         <div className="w-full md:w-1/2 text-right">
           <p className="block text-sm font-medium text-gray-700 dark:text-gray-400">
-            {oti.endDate}
+            {formatDateToLocal(oti.endDate)}
           </p>
         </div>
       </div>
@@ -65,9 +67,6 @@ export default async function OtiDetail({ id }: { id: string }) {
             <th scope="col" className="px-3 py-3 font-medium">
               Total
             </th>
-            <th scope="col" className="px-3 py-3 font-medium">
-              Tipo
-            </th>
           </tr>
         </thead>
         <tbody className="bg-white">
@@ -76,6 +75,30 @@ export default async function OtiDetail({ id }: { id: string }) {
           ))}
         </tbody>
       </table>
+      <div className="flex flex-col md:flex-row items-center mt-4">
+        <div className="w-full md:w-1/2 text-center">
+          <label className="block text-sm font-bold">Firma LEGA</label>
+          {oti.signAuditorId !== null && (
+            <Image
+              alt=""
+              src={"https://localhost:7258/api/file/" + oti.signAuditorId}
+              width={500}
+              height={300}
+            ></Image>
+          )}
+        </div>
+        <div className="w-full md:w-1/2 text-center">
+          <label className="block text-sm font-bold">Firma Residente</label>
+          {oti.signResidentId !== null && (
+            <Image
+              alt=""
+              src={"https://localhost:7258/api/file/" + oti.signResidentId}
+              width={500}
+              height={300}
+            ></Image>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
@@ -89,11 +112,12 @@ export function ConceptItem({ concept }: { concept: Item }) {
       >
         <td className="px-3 py-3 sm:pl-6">{concept.concept}</td>
         <td className="px-3 py-3 whitespace-nowrap">{concept.unit}</td>
-        <td className="px-3 py-3 whitespace-nowrap">{concept.unitPrice}</td>
-        <td className="px-3 py-3 whitespace-nowrap">{concept.quantity}</td>
-        <td className="px-3 py-3 whitespace-nowrap">{concept.total}</td>
         <td className="px-3 py-3 whitespace-nowrap">
-          {concept.otiConceptType}
+          {formatCurrency(concept.unitPrice)}
+        </td>
+        <td className="px-3 py-3 whitespace-nowrap">{concept.quantity}</td>
+        <td className="px-3 py-3 whitespace-nowrap">
+          {formatCurrency(concept.total)}
         </td>
       </tr>
       <ConceptTypeItem
@@ -140,11 +164,12 @@ export function ConceptTypeItem({
           >
             <td className="px-3 py-3 sm:pl-6">{child.concept}</td>
             <td className="px-3 py-3 whitespace-nowrap">{child.unit}</td>
-            <td className="px-3 py-3 whitespace-nowrap">{child.unitPrice}</td>
-            <td className="px-3 py-3 whitespace-nowrap">{child.quantity}</td>
-            <td className="px-3 py-3 whitespace-nowrap">{child.total}</td>
             <td className="px-3 py-3 whitespace-nowrap">
-              {child.otiConceptType}
+              {formatCurrency(child.unitPrice)}
+            </td>
+            <td className="px-3 py-3 whitespace-nowrap">{child.quantity}</td>
+            <td className="px-3 py-3 whitespace-nowrap">
+              {formatCurrency(child.total)}
             </td>
           </tr>
         );

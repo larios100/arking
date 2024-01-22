@@ -26,6 +26,9 @@ export default async function PartsTable({
               Descripción
             </th>
             <th scope="col" className="px-3 py-5 font-medium">
+              Modelo
+            </th>
+            <th scope="col" className="px-3 py-5 font-medium">
               Estatus
             </th>
             <th scope="col" className="relative py-3 pl-6 pr-3">
@@ -48,10 +51,23 @@ export default async function PartsTable({
               <td className="px-3 py-4 whitespace-nowrap">
                 {part.description}
               </td>
+              <td className="px-3 py-4 whitespace-nowrap">{part.prototype}</td>
               <td className="px-3 py-4 whitespace-nowrap">
                 <InvoiceStatus status={part.status}></InvoiceStatus>
               </td>
               <td className="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <a
+                  href={
+                    "/admin/contracts/" +
+                    contractId +
+                    "/part/" +
+                    part.id +
+                    "/edit"
+                  }
+                  className="text-indigo-600 hover:text-indigo-900 mr-2"
+                >
+                  Editar
+                </a>
                 <a
                   href={
                     "/admin/contracts/" +

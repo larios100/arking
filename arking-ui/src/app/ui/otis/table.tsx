@@ -46,9 +46,15 @@ export default async function OtisTable({
             >
               <td className="px-4 py-4 sm:pl-6">{oti.description}</td>
               <td className="px-3 py-4 whitespace-nowrap">{oti.comments}</td>
-              <td className="px-3 py-4 whitespace-nowrap">{oti.date}</td>
-              <td className="px-3 py-4 whitespace-nowrap">{oti.starDate}</td>
-              <td className="px-3 py-4 whitespace-nowrap">{oti.endDate}</td>
+              <td className="px-3 py-4 whitespace-nowrap">
+                {formatDateToLocal(oti.date)}
+              </td>
+              <td className="px-3 py-4 whitespace-nowrap">
+                {formatDateToLocal(oti.starDate)}
+              </td>
+              <td className="px-3 py-4 whitespace-nowrap">
+                {formatDateToLocal(oti.endDate)}
+              </td>
               <td className="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
                   href={"/admin/otis/" + oti.id}

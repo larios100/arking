@@ -6,8 +6,8 @@ export interface OtiDetail {
   date: string;
   startDate: string;
   endDate: string;
-  signAuditorId: string;
-  signResidentId: string;
+  signAuditorId: string | null;
+  signResidentId: string | null;
   statusId: number;
   items: Item[];
 }

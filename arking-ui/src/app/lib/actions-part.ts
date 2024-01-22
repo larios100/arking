@@ -3,7 +3,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { routes } from "./routes";
-import { fetchCreatePart } from "./data-parts";
+import { fetchCreatePart, fetchUpatePart } from "./data-parts";
 const FormSchema = z.object({
   id: z.string(),
   name: z
@@ -25,7 +25,7 @@ const FormSchema = z.object({
   contractId: z.number(),
 });
 
-const CreatePart = FormSchema.omit({ id: true });
+const CreatePart = FormSchema;
 //const UpdateInvoice = FormSchema.omit({ date: true, id: true });
 
 // This is temporary
@@ -47,6 +47,7 @@ export async function createPart(prevState: State, formData: FormData) {
     status: formData.get("status"),
     prototypeId: parseInt(formData.get("prototypeId") as string),
     contractId: parseInt(formData.get("contractId") as string),
+    id: formData.get("id"),
   });
   console.log(formData.get("file"));
 
@@ -60,18 +61,27 @@ export async function createPart(prevState: State, formData: FormData) {
   }
 
   // Prepare data for insertion into the database
-  const { name, description, prototypeId, status, contractId } =
+  const { name, description, prototypeId, status, contractId, id } =
     validatedFields.data;
-  let fileId = null;
   // Insert data into the database
   try {
-    await fetchCreatePart(contractId, {
-      name,
-      description,
-      prototypeId,
-      status,
-      id: 0,
-    });
+    if (parseInt(id) > 0) {
+      await fetchUpatePart(parseInt(id), {
+        name,
+        description,
+        prototypeId,
+        status,
+        id: 0,
+      });
+    } else {
+      await fetchCreatePart(contractId, {
+        name,
+        description,
+        prototypeId,
+        status,
+        id: 0,
+      });
+    }
   } catch (error: any) {
     return {
       message: "Error: " + error.message,

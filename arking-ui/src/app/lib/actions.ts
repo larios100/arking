@@ -40,3 +40,11 @@ export async function authenticate(
   }
   return redirect(routes.contracts);
 }
+
+export async function singout(
+  prevState: string | undefined,
+  formData: FormData
+) {
+  cookies().delete("token");
+  return redirect(routes.login);
+}

@@ -20,4 +20,7 @@ interface SyncApiService {
     @Multipart
     @POST("file/{fileId}")
     suspend fun createFile(@Path("fileId") fileId: String, @Part file: MultipartBody.Part, @Part metadata: MultipartBody.Part, @Part fileType: MultipartBody.Part): Response<Unit>
+    @Multipart
+    @POST("file/{fileId}")
+    suspend fun createFile(@Path("fileId") fileId: String, @Part file: MultipartBody.Part): Response<Unit>
 }

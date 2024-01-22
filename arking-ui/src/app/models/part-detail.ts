@@ -40,7 +40,7 @@ export interface Item {
   id: number;
   name: string;
   description: string;
-  attachments: string;
+  photos: string[];
   testDate: string;
   fixDate: string;
   result: string;

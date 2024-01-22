@@ -66,7 +66,7 @@ export default function CreateUserForm() {
               aria-describedby="role-error"
             >
               <option value="" disabled>
-                Select a customer
+                Selecciona un rol
               </option>
               <option key="Admin" value="Admin">
                 Admin

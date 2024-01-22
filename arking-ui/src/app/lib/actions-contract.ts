@@ -58,7 +58,7 @@ export async function createContract(prevState: State, formData: FormData) {
     description: formData.get("description"),
     budget:
       formData.get("budget") != null
-        ? parseFloat(formData.get("budget") as string) * 100
+        ? parseFloat(formData.get("budget") as string)
         : 0,
     sku: formData.get("sku"),
     status: formData.get("status"),
