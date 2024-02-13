@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Download
 import androidx.compose.material.icons.outlined.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -21,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.arking.model.Prototype
+import com.example.arking.ui.components.ListItem
 
 /**
  * The Contracts screen.
@@ -59,21 +61,17 @@ fun PrototypesContent(prototypes: List<Prototype>,modifier: Modifier = Modifier)
 }
 @Composable
 fun PrototypeItem(prototype: Prototype){
-    Surface(
-        color = Color.White,
-        shape = RoundedCornerShape(8.dp),
-        border = BorderStroke(1.dp, Color.LightGray),
+    ListItem(
     ) {
         Row(
             modifier = Modifier
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(prototype.name, Modifier.weight(1f), color = Color.Gray)
+            Text(prototype.name, Modifier.weight(1f))
             Icon(
-                Icons.Outlined.KeyboardArrowRight,
-                contentDescription = "arrow-right",
-                tint = Color.Gray
+                Icons.Outlined.Download,
+                contentDescription = "download"
             )
         }
     }

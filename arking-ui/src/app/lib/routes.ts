@@ -8,4 +8,5 @@ export const routes = {
   prototypes: "/admin/prototypes",
   prototypeCreate: "/admin/prototypes/create",
   userCreate: "/admin/users/create",
+  home: "/admin/home",
 };

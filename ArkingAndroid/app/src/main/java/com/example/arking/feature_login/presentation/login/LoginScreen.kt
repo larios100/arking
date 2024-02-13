@@ -1,6 +1,5 @@
 package com.example.arking.feature_login.presentation.login
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,7 +9,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -22,10 +20,12 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.arking.feature_otis.presentation.add_edit_oti.AddEditOtiViewModel
+import com.example.arking.R
 
 @Composable
 fun LoginScreen(
@@ -33,12 +33,8 @@ fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
-    val snackbarHostState = remember { SnackbarHostState() }
     val onEvent = viewModel::onEvent
     val context = LocalContext.current
-    /*val isEmailValid by remember(username) {
-        mutableStateOf(username.isNotEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(username).matches())
-    }*/
     LaunchedEffect(key1 = context) {
         viewModel.events.collect { event ->
             if(event == UiEvent.LoginSuccess){
@@ -58,7 +54,7 @@ fun LoginScreen(
         TextField(
             value = state.userName,
             onValueChange = { onEvent(LoginEvent.SetUserName(it)) },
-            label = { Text("Username (Email)") },
+            label = { Text(stringResource(R.string.email)) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
             keyboardActions = KeyboardActions(
@@ -71,12 +67,13 @@ fun LoginScreen(
         TextField(
             value = state.password,
             onValueChange = { onEvent(LoginEvent.SetPassword(it)) },
-            label = { Text("Password") },
+            label = { Text(stringResource(R.string.password)) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
             keyboardActions = KeyboardActions(
                 onDone = { focusManager.clearFocus() },
             ),
+            visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp)
@@ -96,7 +93,7 @@ fun LoginScreen(
             enabled = !state.loading,
             modifier = Modifier.padding(vertical = 16.dp)
         ) {
-            Text("Login")
+            Text(stringResource(R.string.login))
         }
     }
 }

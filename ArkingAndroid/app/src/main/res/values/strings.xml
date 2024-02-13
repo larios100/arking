@@ -51,4 +51,7 @@
     <string name="error_500">Ocurrió un error indesperado, favor de intentar mas tarde</string>
     <string name="error_forbidden">Usuario no autorizado</string>
     <string name="sync_inprogress">Sincronizando información, favor de permanecer en la pantalla</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
 </resources>

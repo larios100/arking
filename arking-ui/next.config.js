@@ -10,6 +10,14 @@ const nextConfig = {
       },
     ],
   },
+  assetPrefix: "/arking",
+  allowedOrigins: ["www.arking.com.mx", "localhost:3000"],
+  experimental: {
+    allowedOrigins: ["www.arking.com.mx", "localhost:3000"],
+    serverActions: {
+      allowedOrigins: ["www.arking.com.mx", "localhost:3000"],
+    },
+  },
 };
 
 module.exports = nextConfig;

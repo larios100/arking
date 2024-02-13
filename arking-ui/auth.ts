@@ -11,7 +11,7 @@ export async function getUser(
 ): Promise<AuthModel | null> {
   try {
     const user = await fetchWithInterceptor(
-      "https://localhost:7258/api/user/login",
+      `${process.env.URL_API}user/login`,
       {
         method: "POST",
         body: JSON.stringify({ userName: userName, password: password }),

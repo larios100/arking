@@ -1,5 +1,8 @@
 export interface AuthModel {
   token: string;
+  firstName: string;
+  lastName: string;
+  userName: string;
   //user: User;
 }
 export interface User {

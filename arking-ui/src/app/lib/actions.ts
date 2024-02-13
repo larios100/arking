@@ -34,11 +34,14 @@ export async function authenticate(
     }
     const oneDay = 24 * 60 * 60 * 1000 * 365;
     cookies().set("token", user.token, { expires: Date.now() + oneDay });
+    cookies().set("user", user.firstName + " " + user.lastName, {
+      expires: Date.now() + oneDay,
+    });
   } catch (error) {
     console.log("error", error);
     return errorMessage;
   }
-  return redirect(routes.contracts);
+  return redirect(routes.home);
 }
 
 export async function singout(

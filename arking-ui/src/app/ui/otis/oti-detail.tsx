@@ -81,7 +81,7 @@ export default async function OtiDetail({ id }: { id: string }) {
           {oti.signAuditorId !== null && (
             <Image
               alt=""
-              src={"https://localhost:7258/api/file/" + oti.signAuditorId}
+              src={process.env.URL_API + "file/" + oti.signAuditorId}
               width={500}
               height={300}
             ></Image>
@@ -92,7 +92,7 @@ export default async function OtiDetail({ id }: { id: string }) {
           {oti.signResidentId !== null && (
             <Image
               alt=""
-              src={"https://localhost:7258/api/file/" + oti.signResidentId}
+              src={process.env.URL_API + "/file/" + oti.signResidentId}
               width={500}
               height={300}
             ></Image>

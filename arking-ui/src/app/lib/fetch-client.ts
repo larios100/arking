@@ -24,15 +24,12 @@ export async function fetchGetWithInterceptor(url: string): Promise<Response> {
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
   console.log("token", token);
-  var response = await fetchWithInterceptor(
-    `https://localhost:7258/api/${url}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    }
-  );
+  var response = await fetchWithInterceptor(`${process.env.URL_API}${url}`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
   return response;
 }
 export async function fetchPostJsonWithInterceptor(
@@ -41,17 +38,14 @@ export async function fetchPostJsonWithInterceptor(
 ): Promise<Response> {
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
-  var response = await fetchWithInterceptor(
-    `https://localhost:7258/api/${url}`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + token,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(body),
-    }
-  );
+  var response = await fetchWithInterceptor(`${process.env.URL_API}${url}`, {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + token,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
   return response;
 }
 export async function fetchPutJsonWithInterceptor(
@@ -60,17 +54,14 @@ export async function fetchPutJsonWithInterceptor(
 ): Promise<Response> {
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
-  var response = await fetchWithInterceptor(
-    `https://localhost:7258/api/${url}`,
-    {
-      method: "PUT",
-      headers: {
-        Authorization: "Bearer " + token,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(body),
-    }
-  );
+  var response = await fetchWithInterceptor(`${process.env.URL_API}${url}`, {
+    method: "PUT",
+    headers: {
+      Authorization: "Bearer " + token,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
   return response;
 }
 export async function fetchPostFormDataWithInterceptor(
@@ -79,16 +70,13 @@ export async function fetchPostFormDataWithInterceptor(
 ): Promise<Response> {
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
-  var response = await fetchWithInterceptor(
-    `https://localhost:7258/api/${url}`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-      body: body,
-    }
-  );
+  var response = await fetchWithInterceptor(`${process.env.URL_API}${url}`, {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+    body: body,
+  });
   return response;
 }
 
